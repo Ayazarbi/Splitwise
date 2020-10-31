@@ -1,0 +1,351 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/kali/Desktop/Splitwise-new/Splitwise.Web/Splitwise.Web.csproj": {}
+  },
+  "projects": {
+    "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj",
+        "projectName": "Splitwise.Core",
+        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj",
+        "packagesPath": "/home/kali/.nuget/packages/",
+        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/kali/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {
+              "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.8.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
+        "projectName": "Splitwise.DomainModels",
+        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
+        "packagesPath": "/home/kali/.nuget/packages/",
+        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/kali/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[3.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj",
+        "projectName": "Splitwise.Repositories",
+        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj",
+        "packagesPath": "/home/kali/.nuget/packages/",
+        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/kali/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {
+              "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj"
+              },
+              "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.8.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj",
+        "projectName": "Splitwise.Util",
+        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj",
+        "packagesPath": "/home/kali/.nuget/packages/",
+        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/kali/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/kali/Desktop/Splitwise-new/Splitwise.Web/Splitwise.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.Web/Splitwise.Web.csproj",
+        "projectName": "Splitwise.Web",
+        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Web/Splitwise.Web.csproj",
+        "packagesPath": "/home/kali/.nuget/packages/",
+        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Web/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/kali/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj"
+              },
+              "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj"
+              },
+              "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj"
+              },
+              "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.AspNetCore.SpaServices.Extensions": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

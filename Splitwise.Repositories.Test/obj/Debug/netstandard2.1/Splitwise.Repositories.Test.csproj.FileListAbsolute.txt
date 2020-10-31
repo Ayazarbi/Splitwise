@@ -1,0 +1,16 @@
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/bin/Debug/netstandard2.1/Splitwise.Repositories.Test.deps.json
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/bin/Debug/netstandard2.1/Splitwise.Repositories.Test.dll
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/bin/Debug/netstandard2.1/Splitwise.Repositories.Test.pdb
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/bin/Debug/netstandard2.1/Splitwise.DomainModels.dll
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/bin/Debug/netstandard2.1/Splitwise.Repositories.dll
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/bin/Debug/netstandard2.1/Splitwise.Util.dll
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/bin/Debug/netstandard2.1/Splitwise.Repositories.pdb
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/bin/Debug/netstandard2.1/Splitwise.DomainModels.pdb
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/bin/Debug/netstandard2.1/Splitwise.Util.pdb
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/obj/Debug/netstandard2.1/Splitwise.Repositories.Test.csprojAssemblyReference.cache
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/obj/Debug/netstandard2.1/Splitwise.Repositories.Test.AssemblyInfoInputs.cache
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/obj/Debug/netstandard2.1/Splitwise.Repositories.Test.AssemblyInfo.cs
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/obj/Debug/netstandard2.1/Splitwise.Repositories.Test.csproj.CoreCompileInputs.cache
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/obj/Debug/netstandard2.1/Splitwise.Repositories.Test.csproj.CopyComplete
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/obj/Debug/netstandard2.1/Splitwise.Repositories.Test.dll
+/home/kali/Desktop/Splitwise-new/Splitwise.Repositories.Test/obj/Debug/netstandard2.1/Splitwise.Repositories.Test.pdb
