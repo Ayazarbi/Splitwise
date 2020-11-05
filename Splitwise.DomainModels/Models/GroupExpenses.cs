@@ -6,7 +6,7 @@ public class GroupExpense{
     public int GroupExpenseId { get; set; }
     
     [ForeignKey("Group")]
-    public int GroupId { get; set; }
+    public int? GroupId { get; set; }
     public Group Group { get; set; }
     
      [ForeignKey("Expense")]

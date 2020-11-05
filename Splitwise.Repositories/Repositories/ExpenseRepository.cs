@@ -21,10 +21,10 @@ public class ExpenseRepository:IExpense{
         context.SaveChanges();
         
         if(expenseModel.Expense
-        .GroupId!=0){
+        .GroupId!=null){
         GroupExpense groupExpense=new GroupExpense(){
             ExpenseId=expenseModel.Expense.ExpenseId,
-            GroupId=expenseModel.Expense.GroupId,
+            GroupId= expenseModel.Expense.GroupId,
         };
             context.GroupsofExpenses.Add(groupExpense);
             context.SaveChanges();

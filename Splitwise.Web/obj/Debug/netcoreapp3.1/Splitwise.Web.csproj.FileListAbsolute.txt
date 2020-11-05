@@ -183,3 +183,4 @@
 /home/kali/Desktop/Splitwise/Splitwise.Web/bin/Debug/netcoreapp3.1/Splitwise-appp/tsconfig.json
 /home/kali/Desktop/Splitwise/Splitwise.Web/bin/Debug/netcoreapp3.1/Splitwise-appp/tsconfig.spec.json
 /home/kali/Desktop/Splitwise/Splitwise.Web/bin/Debug/netcoreapp3.1/Splitwise-appp/tslint.json
+/home/kali/Desktop/Splitwise/Splitwise.Web/bin/Debug/netcoreapp3.1/package-lock.json

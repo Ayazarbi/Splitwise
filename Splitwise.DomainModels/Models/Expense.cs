@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Expense{
 
    
-    public  int GroupId{get; set;}
+    public  int? GroupId{get; set;}
 
     public Group Group{get; set;}
     public int ExpenseId { get; set; }
