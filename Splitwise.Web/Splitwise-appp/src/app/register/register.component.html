@@ -7,27 +7,27 @@
       <form #myform="ngForm" (ngSubmit)="Signup()">
         <div class="form-group">
             <label for="Username">Username</label>
-            <input class="form-control" type="text" name="Username" id="Username" [(ngModel)]="User.username">
+            <input class="form-control" type="text" name="Username" id="Username" [(ngModel)]="username">
           </div>
         
         <div class="form-group">
           <label for="Email">Email</label>
-          <input class="form-control" type="text" name="Email" id="Email" [(ngModel)]="User.email">
+          <input class="form-control" type="email" name="Email" id="Email" [(ngModel)]="email">
         </div>
   
         <div class="form-group">
           <label for="Passoword">Password</label>
-          <input class="form-control" type="password" name="Password" id="Password" [(ngModel)]="User.password">
+          <input class="form-control" type="password" name="Password" id="Password" [(ngModel)]="password">
         </div>
 
         <div class="form-group">
             <label for="Confirm Passoword">Confirm Password</label>
-            <input class="form-control" type="password" name="Confirm Password" id="Confirm Password" [(ngModel)]="User.confirmpassword">
+            <input class="form-control" type="password" name="Confirm Password" id="Confirm Password" [(ngModel)]="confirmpassword">
           </div>
   
           <div class="form-group">
             <label for="Mobilenumber">Mobile no.</label>
-            <input class="form-control" type="text" name="Mobilenumber" id="Mobilenumber" [(ngModel)]="User.mobilenumber">
+            <input class="form-control" type="text" name="Mobilenumber" id="Mobilenumber" [(ngModel)]="mobilenumber">
           </div>
   
        
@@ -42,6 +42,10 @@
   
   
       </form>
+
+      <div class="alert alert-danger" *ngIf="error">
+        <p>Somethig Went Wrong plese try again</p>
+      </div>
     </div>
   </div>
   
