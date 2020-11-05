@@ -1,0 +1,89 @@
+<div class="container bg-light p-4"   >
+
+    <h3 class="bg-dark text-white text-center mt-5">Dashboard</h3>
+    
+    <div class="row ml-2">
+     <div  id="userinfo">
+        <div class="card bg-light" style="width: 14rem;height:17rem;scrollbar-width: 0px;">
+            <img class="card-img-top h-50 " src="../../assets/user.jpeg" alt="Card image cap">
+            <div class="card-body">
+              <h6>name</h6>
+              <h6>balance</h6>
+            </div>
+          </div>
+     </div>
+   
+    <div class="box" id="Expenses">
+        <h6 class="bg-dark">Myexpense</h6>
+        <table align="left">
+            <tr *ngFor="let item of model.epenses">
+                <td><h6>{{item.title}}</h6></td>
+
+            </tr>
+
+        </table>
+        
+
+    </div>
+    <div class="box" id="groups">
+        <h6 class="bg-dark">Mygroups</h6>
+        <table align="left">
+            <tr *ngFor="let item of model.groups">
+                <td><h6>{{item.title}}</h6></td>
+
+            </tr>
+
+        </table>
+        
+
+    </div>
+    <div class="box" id="friends">
+        <h6 class="bg-dark">Friends</h6>
+        <table align="left">
+            <tr *ngFor="let item of model.Friends">
+                <td><h6>{{item.username}}</h6></td>
+
+            </tr>
+
+        </table>
+        
+    </div>
+    <div class="box" id="transactions">
+        <h6 class="bg-dark">Transaction</h6>
+        <table align="left">
+            <tr *ngFor="let item of model.transactions">
+                <td><h6>{{item.payerId}} paid {{item.paidAmount}} to {{item.payeeId}}</h6></td>
+
+            </tr>
+
+        </table>
+        
+    
+
+
+    </div>
+    <div class="box">
+        <h6 class="bg-dark">Owes To</h6>
+        <table align="left">
+            <tr *ngFor="let item of model.owesto">
+                <td><h6>{{item.payerId}}</h6></td>
+                <td><h6>{{item.amount}}</h6></td>
+
+            </tr>
+
+        </table>
+    </div>
+    <div class="box"> 
+        <h6 class="bg-dark">Owes from</h6>
+        <table align="left">
+            <tr *ngFor="let item of model.owesfrom">
+                <td><h6>{{item.payerId}}</h6></td>
+                <td><h6>{{item.amount}}</h6></td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {}
+    "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {}
   },
   "projects": {
-    "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
+    "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
+        "projectUniqueName": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
         "projectName": "Splitwise.DomainModels",
-        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
+        "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
         "packagesPath": "/home/kali/.nuget/packages/",
-        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/obj/",
+        "outputPath": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kali/.nuget/NuGet/NuGet.Config"

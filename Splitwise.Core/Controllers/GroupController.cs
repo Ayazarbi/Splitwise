@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ public class GroupController:Controller{
 
 
     [HttpPost]
-    public ActionResult Add(GroupModel group){
+    public ActionResult<Group> Add(GroupModel group){
 
         return Ok(groupRepository.AddGroup(group));
     }
@@ -29,25 +30,25 @@ public class GroupController:Controller{
 
     [HttpDelete("{id}")]
 
-    public ActionResult Delete(int id){
+    public ActionResult<Group> Delete(int id){
 
         return Ok(groupRepository.DeleteGroup(id));
     }
 
     [HttpGet("{id}/Expenses")]
-    public ActionResult GetGroupExpenses(int id){
+    public ActionResult<IEnumerable<Expense>> GetGroupExpenses(int id){
 
         return Ok(groupRepository.GetGroupExpenses(id));
     }
 
     [HttpGet("{id}/calculations")]
-    public ActionResult Getcalculations(int id){
+    public async Task<ActionResult<BorrowLentModel>> Getcalculations(int id){
 
-        return Ok(groupRepository.GetGroupCalculation(id));
+        return Ok(await groupRepository.GetGroupCalculation(id));
     }
 
     [HttpPut("{id}")]
-    public ActionResult Edit(int id,GroupModel groupModel){
+    public ActionResult<GroupModel> Edit(int id,GroupModel groupModel){
 
         return Ok(groupRepository.Editgroup(id,groupModel));
     }

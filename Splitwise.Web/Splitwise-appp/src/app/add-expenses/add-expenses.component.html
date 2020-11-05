@@ -1,0 +1,171 @@
+
+
+
+<div class="container mt-5 ">
+    <h5 class="bg-dark text-center text-white p-3">Add Expense</h5>
+<form>
+
+
+<div   style="float: right;">
+
+    <div style="border: solid black 1px;">
+        <table  class="text-center "  align="center">
+            <th>Members</th>
+            <tr *ngFor="let item of Membersemail">
+               
+                <td> {{item}}</td>
+                <td><button class="text-danger bg-white border-0" (click)="Removeitem(item)">X</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="border: solid black 1px;" class="mt-4" >
+        <table  class="text-center mr-2"  align="center">
+            <th>User</th>
+            <th>Sharepercentage</th>
+            <th>Amount</th>
+            <tr *ngFor="let item of model.shares">
+               
+                <td> {{item.userId}}</td>
+                <td>{{item.sharePercentage}}</td>
+                <td>{{item.shareAmount}}</td>
+                <td><button class="text-danger bg-white border-0" (click)="Removeshare(item)">X</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="border: solid black 1px;" class="mt-4">
+        <table class="text-center" align="center">
+            <th>Payers</th>
+            <th>Amount</th>
+            <tr *ngFor="let item of model.payers">
+               
+                <td> {{item.payerId}}</td>
+                <td>{{item.amount}}</td>
+                <td><button class="text-danger bg-white border-0" (click)="Removepayer(item)">X</button></td>
+            </tr>
+        </table>
+    </div>
+    
+
+
+
+</div>
+
+    <div class="form-group">
+        <label>Group</label>
+        <select class="form-control w-25" name="Members" [(ngModel)]="model.expense.groupId" >
+            <option>Manali-trip</option>
+            <option>Outing</option>
+            
+        </select>
+           
+
+    </div>
+
+
+
+
+    <div class="form-group">
+    <label>Members</label>
+    
+   
+    <div class="row ml-1">
+    <select class="form-control w-25" name="Members" [(ngModel)]="Memberemail" >
+        <option>ayaz@gmail.com</option>
+        <option>ayaz2@gmail.com</option>
+        <option>3</option>
+    </select>
+    &nbsp;&nbsp;
+    <div>
+    <button class="btn btn-success bg-dark h5" (click)="Addmember(Memberemail)" >+</button>
+    </div>
+    &nbsp;&nbsp;
+    
+   
+
+</div>
+</div>
+
+<div>
+    <label for="Title">Title</label>
+    <input class="form-control w-25 " type="text" id="Title" [(ngModel)]="model.expense.title" name="Title">
+</div>
+
+<div>
+    <label for="date">Date</label>
+    <input class="form-control w-25" type="date" id="date" name="date" [(ngModel)]="model.expense.date">
+</div>
+<div class="form-group">
+    <label  for="amount" >Amount</label>
+    <input class="form-control w-25"type="number" id="amount" name="amount" [(ngModel)]="model.expense.amount">
+
+</div>
+<br>
+
+<div class="form-group">
+    <label>Split-Equally</label>
+    <input type="radio" [(ngModel)]="model.expense.splitType" value="Equally" id="st" name="st">
+    &nbsp;&nbsp;
+    <label>Split-Percentage</label>
+    <input type="radio" [(ngModel)]="model.expense.splitType" value="Percentage" id="st" name="st">
+
+</div>
+
+
+
+<div [hidden]="model.expense.splitType!='Percentage'">
+
+    <label>Members</label>
+    
+   
+    <div class="row ml-1">
+    <select class="form-control w-25" name="Members" [(ngModel)]="Smemberemail" >
+        <option>ayaz@gmail.com</option>
+        <option>ayaz2@gmail.com</option>
+        <option>3</option>
+    </select>
+    <label> Percentage</label>
+    <input class="form-control w-auto" type="number" name="Membershare" [(ngModel)]="Membershare">
+    <div>
+        <button class="btn btn-success bg-dark h5" (click)="Addmembershare(Smemberemail,Membershare)" >+</button>
+        </div>
+        
+    </div>
+
+</div>
+<div>
+    <div >
+
+        <label>Payers</label>
+        
+       
+        <div class="row ml-1">
+        <select class="form-control w-25" name="Members" [(ngModel)]="Payeremail" >
+            <option>ayaz@gmail.com</option>
+            <option>ayaz2@gmail.com</option>
+            <option>3</option>
+        </select>
+        &nbsp;
+        <label> Amount</label>
+        &nbsp;
+        <input class="form-control w-auto" type="number" name="paidamount" [(ngModel)]="Paidamount">
+        &nbsp;
+        <div>
+            <button class="btn btn-success bg-dark h5" (click)="Addpayer(Payeremail,Paidamount)" >+</button>
+            </div>
+       
+        </div>
+       
+    </div>
+    <div>
+</div>
+
+    
+
+    <input type="button" value="Add Expense" class="btn btn-success bg-dark">
+</div>
+</form>
+</div>
+
+

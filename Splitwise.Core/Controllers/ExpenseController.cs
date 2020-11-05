@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,35 +14,35 @@ public class ExpenseController:Controller{
 
 
 [HttpPost]
-public ActionResult Add(ExpenseModel expenseModel){
+public ActionResult<Expense> Add(ExpenseModel expenseModel){
 
 return Ok(expenseRepository.AddExpense(expenseModel));
 
 }
 
 [HttpGet("{id}")]
-public async Task<ActionResult> Getexpense( int id){
+public async Task<ActionResult<ExpenseModel>> Getexpense( int id){
 
 return Ok(await expenseRepository.GetExpense(id));
 
 }
 
 [HttpPut("{id}")]
-public ActionResult Edit(int id,ExpenseModel expenseModel){
+public ActionResult<ExpenseModel> Edit(int id,ExpenseModel expenseModel){
 
 return Ok(expenseRepository.EditExpense(id,expenseModel));
 
 }
 
 [HttpDelete("{id}")]
-public ActionResult delete(int id){
+public ActionResult<Expense> delete(int id){
 
 return Ok(expenseRepository.DeleteExpense(id));
 
 }
 
 [HttpGet("Calculation/{id}")]
-public async Task<ActionResult> Getcalculation(int id){
+public async Task<ActionResult<List<BorrowLentModel>>> Getcalculation(int id){
 
     return Ok(await expenseRepository.GetExpeneseCalculations(id));
 }

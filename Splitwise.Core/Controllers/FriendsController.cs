@@ -12,7 +12,7 @@ public class FriendsController : Controller{
     }
 
     [HttpPost]
-    public async Task<ActionResult> Add(Friend friend){
+    public async Task<ActionResult<Friend>> Add(Friend friend){
 
         return Ok( await friendRepository.Addfriend(friend));
 

@@ -14,7 +14,7 @@ public class PaymentController:Controller{
     }
 
     [HttpPost]
-    public ActionResult Add(TransactionModel transaction){
+    public ActionResult<Transaction> Add(TransactionModel transaction){
 
     return Ok(paymentRepository.Add(transaction));
         

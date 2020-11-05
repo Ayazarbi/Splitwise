@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj": {}
+    "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj": {}
   },
   "projects": {
-    "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj": {
+    "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj",
+        "projectUniqueName": "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj",
         "projectName": "Splitwise.Util",
-        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj",
+        "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj",
         "packagesPath": "/home/kali/.nuget/packages/",
-        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/obj/",
+        "outputPath": "/home/kali/Desktop/Splitwise/Splitwise.Util/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kali/.nuget/NuGet/NuGet.Config"

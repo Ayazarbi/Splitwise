@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -20,24 +21,24 @@ public class UserController:Controller{
 
 
     [HttpGet("{id}/Expenses")]
-    public ActionResult GetUserExpenses(string id){
+    public ActionResult<List<Expense>> GetUserExpenses(string id){
 
             return Ok(expenseRepository.GetUserExpense(id));
     }
     [HttpGet("{id}/Groups")]
 
-    public ActionResult GetUserGroups(string id){
+    public ActionResult<IEnumerable<Group>> GetUserGroups(string id){
 
             return Ok(groupRepository.GetUserGroups(id));
     }
     [HttpGet("{id}/Activities")]
-    public ActionResult GetUserActivties(string id){
+    public ActionResult<IEnumerable<Activity>> GetUserActivties(string id){
 
         return Ok(activityRepository.GetUserActivities(id));
     }
 
     [HttpGet("{id}/Transactions")]
-    public ActionResult GetuserTransaction(string id){
+    public ActionResult<IEnumerable<Transaction>> GetuserTransaction(string id){
 
         return Ok(paymentRepository.GetUsertransactions(id));
     }

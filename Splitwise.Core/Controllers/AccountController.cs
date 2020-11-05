@@ -42,7 +42,7 @@ public class AccountController : ControllerBase
 
     [Route("Login")]
     [HttpPost]
-    public async Task<ActionResult> Login(LoginModel model){
+    public async Task<ActionResult<object>> Login(LoginModel model){
 
     var key = Encoding.UTF8.GetBytes("1234567890123456");
 
@@ -70,7 +70,7 @@ public class AccountController : ControllerBase
 
     [HttpPut("{id}")]
 
-    public ActionResult Chanagepassword(string id,ResetpasswordModel model){
+    public ActionResult<Applicationuser> Chanagepassword(string id,ResetpasswordModel model){
 
         return Ok(accountRepository.ResetPassword(id,model));
     }
@@ -83,7 +83,7 @@ public class AccountController : ControllerBase
 
 
     [HttpGet("{id}")]
-    public async Task<ActionResult> getuser(string id){
+    public async Task<ActionResult<UserModel>> getuser(string id){
 
         return Ok(await accountRepository.GetUserinfo(id));
     }

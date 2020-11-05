@@ -1,0 +1,17 @@
+.box{
+
+
+    height:300px;
+    width: 250px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    overflow: scroll;
+}
+
+h6{
+    color: white;
+    text-align: center;
+    background-color:black;
+    padding: 5px;
+}

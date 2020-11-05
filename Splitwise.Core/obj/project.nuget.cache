@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DI2KyOGw/IiC0Lli8eupvJ3N2ITQhsbpxNs1Vdk4UndqG41AoLVjIh3FZy1jboyjYpdLoZ1hoDN/F3izI6nkFA==",
+  "dgSpecHash": "mv2BD/rRd+ZHNh9i48GxZvYrclaoc80K7rhaHg1ccf2nyQ9GXr+8PXqJrxO5Ou7q6fLgP0ewujXAMHIYn3nVUA==",
   "success": true,
-  "projectFilePath": "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj",
+  "projectFilePath": "/home/kali/Desktop/Splitwise/Splitwise.Core/Splitwise.Core.csproj",
   "expectedPackageFiles": [
     "/home/kali/.nuget/packages/microsoft.aspnetcore.antiforgery/2.2.0/microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "/home/kali/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

@@ -7,3 +7,12 @@
 /home/kali/Desktop/Splitwise-new/Splitwise.Util/obj/Debug/netstandard2.1/Splitwise.Util.csproj.CoreCompileInputs.cache
 /home/kali/Desktop/Splitwise-new/Splitwise.Util/obj/Debug/netstandard2.1/Splitwise.Util.dll
 /home/kali/Desktop/Splitwise-new/Splitwise.Util/obj/Debug/netstandard2.1/Splitwise.Util.pdb
+/home/kali/Desktop/Splitwise/Splitwise.Util/bin/Debug/netstandard2.1/Splitwise.Util.deps.json
+/home/kali/Desktop/Splitwise/Splitwise.Util/bin/Debug/netstandard2.1/Splitwise.Util.dll
+/home/kali/Desktop/Splitwise/Splitwise.Util/bin/Debug/netstandard2.1/Splitwise.Util.pdb
+/home/kali/Desktop/Splitwise/Splitwise.Util/obj/Debug/netstandard2.1/Splitwise.Util.csprojAssemblyReference.cache
+/home/kali/Desktop/Splitwise/Splitwise.Util/obj/Debug/netstandard2.1/Splitwise.Util.AssemblyInfoInputs.cache
+/home/kali/Desktop/Splitwise/Splitwise.Util/obj/Debug/netstandard2.1/Splitwise.Util.AssemblyInfo.cs
+/home/kali/Desktop/Splitwise/Splitwise.Util/obj/Debug/netstandard2.1/Splitwise.Util.csproj.CoreCompileInputs.cache
+/home/kali/Desktop/Splitwise/Splitwise.Util/obj/Debug/netstandard2.1/Splitwise.Util.dll
+/home/kali/Desktop/Splitwise/Splitwise.Util/obj/Debug/netstandard2.1/Splitwise.Util.pdb

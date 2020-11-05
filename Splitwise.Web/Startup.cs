@@ -88,6 +88,7 @@ namespace Splitwise.Web
             });
 
 
+            services.AddOpenApiDocument();
              services.AddCors(options =>
             {
                 options.AddPolicy("foo",
@@ -110,10 +111,12 @@ namespace Splitwise.Web
 
             app.UseCors("foo");
             app.UseHttpsRedirection();
-
             app.UseRouting();
             app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseAuthorization(); 
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
+            
 
              app.UseEndpoints(endpoints =>
             {

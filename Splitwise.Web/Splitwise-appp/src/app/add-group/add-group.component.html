@@ -1,0 +1,56 @@
+
+
+<div class="container mt-5 ">
+    <h5 class="bg-dark text-center text-white p-3">Add group</h5>
+<form>
+   
+    
+    
+    <div class="form-group">
+    <label>Members</label>
+    
+   
+    <div class="row ml-1">
+    <select class="form-control w-25" name="Members" [(ngModel)]="Memberemail" >
+        <option>ayaz@gmail.com</option>
+        <option>ayaz2@gmail.com</option>
+        <option>3</option>
+    </select>
+    &nbsp;&nbsp;
+    <div>
+    <button class="btn btn-success bg-dark h5" (click)="Addmember(Memberemail)" >+</button>
+    </div>
+    &nbsp;&nbsp;
+    
+    <div style="float: right;margin-right:4in;margin-bottom: 30px;">
+        <table >
+            <th>Members</th>
+            <tr *ngFor="let item of Group.MembersId">
+               
+                <td> {{item}}</td>
+                <td><button class="text-danger bg-white border-0" (click)="Removeitem(item)">X</button></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</div>
+
+<div>
+    <label for="Title">Title</label>
+    <input class="form-control w-25 " type="text" id="Title" [(ngModel)]="Group.group.title" name="Title">
+</div>
+
+<div>
+    <label for="date">Date</label>
+    <input class="form-control w-25" type="date" id="date" name="date" [(ngModel)]="Group.group.date">
+</div>
+
+<br>
+<div>
+    <input type="button" value="Add group" class="btn btn-success bg-dark">
+</div>
+</form>
+</div>
+
+

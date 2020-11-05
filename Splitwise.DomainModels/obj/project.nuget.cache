@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Bwc2lYLYqH1lo1PwM74w5JV599z7199Q+Un0HsHSIEIQQYMy1BR3CAEquywqCHKaBkktSe/qB8mISNpi+OsNtQ==",
+  "dgSpecHash": "5JXqcx0tzxdqxtVsAnaHNzDzQTXQF1quoQAXIlG4aPn3g78DWT+Lu95rpCxiI1+waF85M0QOt7IimuGloMkptw==",
   "success": true,
-  "projectFilePath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
+  "projectFilePath": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
   "expectedPackageFiles": [
     "/home/kali/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "/home/kali/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

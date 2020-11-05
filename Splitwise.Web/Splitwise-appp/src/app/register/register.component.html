@@ -1,0 +1,49 @@
+<h3 class="bg-dark text-white  p-3">Splitwise</h3>
+<div style="margin-top: 1.5in;" class="container align-middle">
+    <div class="text-center">
+      <h3 class="bg-dark p-2  text-white">Signup</h3>
+    </div>
+    <div>
+      <form #myform="ngForm" (ngSubmit)="Signup()">
+        <div class="form-group">
+            <label for="Username">Username</label>
+            <input class="form-control" type="text" name="Username" id="Username" [(ngModel)]="User.username">
+          </div>
+        
+        <div class="form-group">
+          <label for="Email">Email</label>
+          <input class="form-control" type="text" name="Email" id="Email" [(ngModel)]="User.email">
+        </div>
+  
+        <div class="form-group">
+          <label for="Passoword">Password</label>
+          <input class="form-control" type="password" name="Password" id="Password" [(ngModel)]="User.password">
+        </div>
+
+        <div class="form-group">
+            <label for="Confirm Passoword">Confirm Password</label>
+            <input class="form-control" type="password" name="Confirm Password" id="Confirm Password" [(ngModel)]="User.confirmpassword">
+          </div>
+  
+          <div class="form-group">
+            <label for="Mobilenumber">Mobile no.</label>
+            <input class="form-control" type="text" name="Mobilenumber" id="Mobilenumber" [(ngModel)]="User.mobilenumber">
+          </div>
+  
+       
+  
+        <div>
+  
+          <input class="btn btn-success bg-dark" type="submit" value="Register" >
+        </div>
+        <div class="alert alert-danger text-danger h-25" *ngIf="error">
+          <h6>{{error}}</h6>
+        </div>
+  
+  
+      </form>
+    </div>
+  </div>
+  
+     
+  

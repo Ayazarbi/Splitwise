@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/kali/Desktop/Splitwise-new/Splitwise.Web/Splitwise.Web.csproj": {}
+    "/home/kali/Desktop/Splitwise/Splitwise.Web/Splitwise.Web.csproj": {}
   },
   "projects": {
-    "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj": {
+    "/home/kali/Desktop/Splitwise/Splitwise.Core/Splitwise.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj",
+        "projectUniqueName": "/home/kali/Desktop/Splitwise/Splitwise.Core/Splitwise.Core.csproj",
         "projectName": "Splitwise.Core",
-        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj",
+        "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.Core/Splitwise.Core.csproj",
         "packagesPath": "/home/kali/.nuget/packages/",
-        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Core/obj/",
+        "outputPath": "/home/kali/Desktop/Splitwise/Splitwise.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kali/.nuget/NuGet/NuGet.Config"
@@ -25,8 +25,8 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj": {
-                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj"
+              "/home/kali/Desktop/Splitwise/Splitwise.Repositories/Splitwise.Repositories.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.Repositories/Splitwise.Repositories.csproj"
               }
             }
           }
@@ -72,14 +72,14 @@
         }
       }
     },
-    "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
+    "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
+        "projectUniqueName": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
         "projectName": "Splitwise.DomainModels",
-        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
+        "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
         "packagesPath": "/home/kali/.nuget/packages/",
-        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/obj/",
+        "outputPath": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kali/.nuget/NuGet/NuGet.Config"
@@ -148,14 +148,14 @@
         }
       }
     },
-    "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj": {
+    "/home/kali/Desktop/Splitwise/Splitwise.Repositories/Splitwise.Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj",
+        "projectUniqueName": "/home/kali/Desktop/Splitwise/Splitwise.Repositories/Splitwise.Repositories.csproj",
         "projectName": "Splitwise.Repositories",
-        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj",
+        "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.Repositories/Splitwise.Repositories.csproj",
         "packagesPath": "/home/kali/.nuget/packages/",
-        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/obj/",
+        "outputPath": "/home/kali/Desktop/Splitwise/Splitwise.Repositories/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kali/.nuget/NuGet/NuGet.Config"
@@ -169,11 +169,11 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
-                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj"
+              "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj"
               },
-              "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj": {
-                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj"
+              "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj"
               }
             }
           }
@@ -211,14 +211,14 @@
         }
       }
     },
-    "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj": {
+    "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj",
+        "projectUniqueName": "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj",
         "projectName": "Splitwise.Util",
-        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj",
+        "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj",
         "packagesPath": "/home/kali/.nuget/packages/",
-        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/obj/",
+        "outputPath": "/home/kali/Desktop/Splitwise/Splitwise.Util/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kali/.nuget/NuGet/NuGet.Config"
@@ -261,14 +261,14 @@
         }
       }
     },
-    "/home/kali/Desktop/Splitwise-new/Splitwise.Web/Splitwise.Web.csproj": {
+    "/home/kali/Desktop/Splitwise/Splitwise.Web/Splitwise.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kali/Desktop/Splitwise-new/Splitwise.Web/Splitwise.Web.csproj",
+        "projectUniqueName": "/home/kali/Desktop/Splitwise/Splitwise.Web/Splitwise.Web.csproj",
         "projectName": "Splitwise.Web",
-        "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Web/Splitwise.Web.csproj",
+        "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.Web/Splitwise.Web.csproj",
         "packagesPath": "/home/kali/.nuget/packages/",
-        "outputPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Web/obj/",
+        "outputPath": "/home/kali/Desktop/Splitwise/Splitwise.Web/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kali/.nuget/NuGet/NuGet.Config"
@@ -282,17 +282,17 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj": {
-                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Core/Splitwise.Core.csproj"
+              "/home/kali/Desktop/Splitwise/Splitwise.Core/Splitwise.Core.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.Core/Splitwise.Core.csproj"
               },
-              "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
-                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.DomainModels/Splitwise.DomainModels.csproj"
+              "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj"
               },
-              "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj": {
-                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Repositories/Splitwise.Repositories.csproj"
+              "/home/kali/Desktop/Splitwise/Splitwise.Repositories/Splitwise.Repositories.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.Repositories/Splitwise.Repositories.csproj"
               },
-              "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj": {
-                "projectPath": "/home/kali/Desktop/Splitwise-new/Splitwise.Util/Splitwise.Util.csproj"
+              "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj": {
+                "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.Util/Splitwise.Util.csproj"
               }
             }
           }
@@ -323,6 +323,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.9, )"
+            },
+            "NSwag.AspNetCore": {
+              "target": "Package",
+              "version": "[13.8.1, )"
             }
           },
           "imports": [
