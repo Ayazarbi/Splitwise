@@ -18,6 +18,7 @@ import { EditgroupComponent } from './editgroup/editgroup.component';
 import { FormsModule } from '@angular/forms';
 import { Splitwise } from './Services/SplitWiseApi';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Authguard } from './authguard';
 
 
 
@@ -43,12 +44,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
     
     
 
   ],
-  providers: [Splitwise.AccountClient ,Splitwise.UserClient,Splitwise.ExpenseClient,Splitwise.GroupClient,Splitwise.PaymentClient],
+  providers: [Splitwise.AccountClient ,Splitwise.UserClient,Splitwise.ExpenseClient,Splitwise.GroupClient,Splitwise.PaymentClient,Splitwise.FriendsClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

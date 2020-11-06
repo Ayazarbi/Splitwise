@@ -10,11 +10,11 @@ public class GroupRepository:IGroup{
 
     public UserManager<Applicationuser> UserManager { get; }
 
-    public GroupRepository(AppdbContext context,UserManager<Applicationuser> userManager)
+    public GroupRepository(AppdbContext context,UserManager<Applicationuser> userManager,IExpense  expenserepo)
     {
         this.context = context;
         UserManager = userManager;
-        
+        this.expenserepo = expenserepo;
     }
 
 
@@ -50,6 +50,10 @@ public class GroupRepository:IGroup{
 
         var group=context.Groups.ToList().FirstOrDefault(x=>x.GroupId==id);
         var expensesid=context.GroupsofExpenses.ToList().Where(x=>x.GroupId==id);
+        
+        var creator=await UserManager.FindByIdAsync(group.CreatorIdId);
+        group.Createdby=creator;
+        
         List<Expense> expenses=new List<Expense>();
          foreach (var item in expensesid)
         {
@@ -106,9 +110,12 @@ public class GroupRepository:IGroup{
             var groupMember=context.GroupMembers.Where(x=>x.GroupId==id);
             context.GroupMembers.RemoveRange(groupMember);
 
-            var groupExpenses=context.GroupsofExpenses.Where(x=>x.GroupId==id);
-            context.GroupsofExpenses.RemoveRange(groupExpenses);
-            context.SaveChanges();
+            var groupExpenses=context.GroupsofExpenses.ToList().Where(x=>x.GroupId==id);
+            foreach (var item in groupExpenses)
+            {
+                expenserepo.DeleteExpense(item.ExpenseId);
+            }
+            
             foreach (var item in groupModel.MembersId.ToList()){
 
                   GroupMembers groupMembers=new GroupMembers();

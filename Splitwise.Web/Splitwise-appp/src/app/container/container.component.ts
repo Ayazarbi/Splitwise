@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Splitwise } from '../Services/SplitWiseApi';
 
 @Component({
   selector: 'app-container',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContainerComponent implements OnInit {
 
-  constructor() { }
+  Isloggedin:boolean;
+  
+  constructor(private service:Splitwise.AccountClient) { }
 
   ngOnInit(): void {
+    
+    this.Isloggedin= this.service.checklogin();
+    console.log(this.Isloggedin);
   }
 
+  logout(){
+
+    this.service.logout();
+  }
 }

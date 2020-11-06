@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   confirmpassword:string;
   balance:number=0.0;
   mobilenumber:string;
-  User:Splitwise.SignupModel={balance:0,mobilenumber:"",email:"",password:"",username:"",init:null,toJSON:null};
+  User?:Splitwise.SignupModel={balance:0,mobilenumber:"",email:"",password:"",username:"",init:null,toJSON:null};
   error:string;
   constructor(private service:Splitwise.AccountClient) { }
 
@@ -29,8 +29,14 @@ export class RegisterComponent implements OnInit {
     this.User.mobilenumber=this.mobilenumber;
     this.User.email=this.email;
     console.log(this.User);
-    this.service.register(this.User).subscribe(x=>console.log,err=>this.error=err)
+    this.service.register(this.User).subscribe(x=>{console.log;
+    this.error="User Added Successfully"},err=>{
 
+      if(err.status=="400"){
+        this.error="something went wrong";
+      }
+    })
+    
   }
 
 }

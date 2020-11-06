@@ -140,34 +140,45 @@ export class AccountClient {
         return _observableOf<FileResponse>(<any>null);
     }
 
-    login(model: LoginModel): Observable<FileResponse> {
+    checklogin(){
+
+        var token=localStorage.getItem("token")
+        if(token){
+            return true;
+        }
+        return false;
+    }
+
+    login(model: LoginModel) {
         let url_ = this.baseUrl + "/Account/Login";
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(model);
+       return this.http.post(url_,model);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "application/json",
-            headers: new HttpHeaders({
-                "Content-Type": "application/json",
-                "Accept": "application/octet-stream"
-            })
-        };
+        // const content_ = JSON.stringify(model);
 
-        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processLogin(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processLogin(<any>response_);
-                } catch (e) {
-                    return <Observable<FileResponse>><any>_observableThrow(e);
-                }
-            } else
-                return <Observable<FileResponse>><any>_observableThrow(response_);
-        }));
+        // let options_ : any = {
+        //     body: content_,
+        //     observe: "response",
+        //     responseType: "application/json",
+        //     headers: new HttpHeaders({
+        //         "Content-Type": "application/json",
+        //         "Accept": "application/octet-stream"
+        //     })
+        // };
+
+        // return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        //     return this.processLogin(response_);
+        // })).pipe(_observableCatch((response_: any) => {
+        //     if (response_ instanceof HttpResponseBase) {
+        //         try {
+        //             return this.processLogin(<any>response_);
+        //         } catch (e) {
+        //             return <Observable<FileResponse>><any>_observableThrow(e);
+        //         }
+        //     } else
+        //         return <Observable<FileResponse>><any>_observableThrow(response_);
+        // }));
     }
 
     protected processLogin(response: HttpResponseBase): Observable<FileResponse> {
@@ -296,51 +307,54 @@ export class AccountClient {
         return _observableOf<UserModel>(<any>null);
     }
 
-    logout(): Observable<FileResponse> {
-        let url_ = this.baseUrl + "/Account";
-        url_ = url_.replace(/[?&]$/, "");
+    logout(){
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Accept": "application/octet-stream"
-            })
-        };
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        // let url_ = this.baseUrl + "/Account";
+        // url_ = url_.replace(/[?&]$/, "");
 
-        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processLogout(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processLogout(<any>response_);
-                } catch (e) {
-                    return <Observable<FileResponse>><any>_observableThrow(e);
-                }
-            } else
-                return <Observable<FileResponse>><any>_observableThrow(response_);
-        }));
+        // let options_ : any = {
+        //     observe: "response",
+        //     responseType: "blob",
+        //     headers: new HttpHeaders({
+        //         "Accept": "application/octet-stream"
+        //     })
+        // };
+
+        // return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        //     return this.processLogout(response_);
+        // })).pipe(_observableCatch((response_: any) => {
+        //     if (response_ instanceof HttpResponseBase) {
+        //         try {
+        //             return this.processLogout(<any>response_);
+        //         } catch (e) {
+        //             return <Observable<FileResponse>><any>_observableThrow(e);
+        //         }
+        //     } else
+        //         return <Observable<FileResponse>><any>_observableThrow(response_);
+        // }));
     }
 
-    protected processLogout(response: HttpResponseBase): Observable<FileResponse> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+    // protected processLogout(response: HttpResponseBase): Observable<FileResponse> {
+    //     const status = response.status;
+    //     const responseBlob =
+    //         response instanceof HttpResponse ? response.body :
+    //         (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200 || status === 206) {
-            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
-            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
-            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
-            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf<FileResponse>(<any>null);
-    }
+    //     let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+    //     if (status === 200 || status === 206) {
+    //         const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+    //         const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+    //         const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+    //         return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+    //     } else if (status !== 200 && status !== 204) {
+    //         return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+    //         return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+    //         }));
+    //     }
+    //     return _observableOf<FileResponse>(<any>null);
+    // }
 }
 
 @Injectable()
@@ -1541,7 +1555,7 @@ export class WeatherForecast implements IWeatherForecast {
         data["temperatureC"] = this.temperatureC;
         data["temperatureF"] = this.temperatureF;
         data["summary"] = this.summary;
-        return data; 
+        return data;
     }
 }
 
@@ -1595,7 +1609,7 @@ export class SignupModel implements ISignupModel {
         data["confirmpassword"] = this.confirmpassword;
         data["mobilenumber"] = this.mobilenumber;
         data["balance"] = this.balance;
-        return data; 
+        return data;
     }
 }
 
@@ -1639,7 +1653,7 @@ export class LoginModel implements ILoginModel {
         data = typeof data === 'object' ? data : {};
         data["email"] = this.email;
         data["password"] = this.password;
-        return data; 
+        return data;
     }
 }
 
@@ -1718,7 +1732,7 @@ export class IdentityUserOfString implements IIdentityUserOfString {
         data["lockoutEnd"] = this.lockoutEnd ? this.lockoutEnd.toISOString() : <any>undefined;
         data["lockoutEnabled"] = this.lockoutEnabled;
         data["accessFailedCount"] = this.accessFailedCount;
-        return data; 
+        return data;
     }
 }
 
@@ -1760,7 +1774,7 @@ export class IdentityUser extends IdentityUserOfString implements IIdentityUser 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         super.toJSON(data);
-        return data; 
+        return data;
     }
 }
 
@@ -1792,7 +1806,7 @@ export class Applicationuser extends IdentityUser implements IApplicationuser {
         data = typeof data === 'object' ? data : {};
         data["balacnce"] = this.balacnce;
         super.toJSON(data);
-        return data; 
+        return data;
     }
 }
 
@@ -1834,7 +1848,7 @@ export class ResetpasswordModel implements IResetpasswordModel {
         data["email"] = this.email;
         data["password"] = this.password;
         data["confirmpassword"] = this.confirmpassword;
-        return data; 
+        return data;
     }
 }
 
@@ -1938,7 +1952,7 @@ export class UserModel implements IUserModel {
             for (let item of this.transactions)
                 data["transactions"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
@@ -2004,7 +2018,7 @@ export class Expense implements IExpense {
         data["date"] = this.date;
         data["userId"] = this.userId;
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
@@ -2063,7 +2077,7 @@ export class Group implements IGroup {
         data["createdby"] = this.createdby ? this.createdby.toJSON() : <any>undefined;
         data["date"] = this.date;
         data["amount"] = this.amount;
-        return data; 
+        return data;
     }
 }
 
@@ -2110,7 +2124,7 @@ export class PayerModel implements IPayerModel {
         data["payerId"] = this.payerId;
         data["payer"] = this.payer ? this.payer.toJSON() : <any>undefined;
         data["amount"] = this.amount;
-        return data; 
+        return data;
     }
 }
 
@@ -2160,7 +2174,7 @@ export class Activity implements IActivity {
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
         data["activitydata"] = this.activitydata;
         data["date"] = this.date;
-        return data; 
+        return data;
     }
 }
 
@@ -2221,7 +2235,7 @@ export class Transaction implements ITransaction {
         data["paidAmount"] = this.paidAmount;
         data["settelementId"] = this.settelementId;
         data["settelement"] = this.settelement ? this.settelement.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
@@ -2291,7 +2305,7 @@ export class Settelement implements ISettelement {
         data["lenter"] = this.lenter ? this.lenter.toJSON() : <any>undefined;
         data["groupId"] = this.groupId;
         data["group"] = this.group ? this.group.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
@@ -2358,7 +2372,7 @@ export class ExpenseModel implements IExpenseModel {
             for (let item of this.shares)
                 data["shares"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
@@ -2414,7 +2428,7 @@ export class Share implements IShare {
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
         data["sharePercentage"] = this.sharePercentage;
         data["shareAmount"] = this.shareAmount;
-        return data; 
+        return data;
     }
 }
 
@@ -2468,7 +2482,7 @@ export class BorrowLentModel implements IBorrowLentModel {
         data["borrower"] = this.borrower ? this.borrower.toJSON() : <any>undefined;
         data["lenter"] = this.lenter ? this.lenter.toJSON() : <any>undefined;
         data["amount"] = this.amount;
-        return data; 
+        return data;
     }
 }
 
@@ -2520,7 +2534,7 @@ export class Friend implements IFriend {
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
         data["frndId"] = this.frndId;
         data["frnd"] = this.frnd ? this.frnd.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
@@ -2593,7 +2607,7 @@ export class GroupModel implements IGroupModel {
             for (let item of this.membersId)
                 data["membersId"].push(item);
         }
-        return data; 
+        return data;
     }
 }
 
@@ -2641,7 +2655,7 @@ export class TransactionModel implements ITransactionModel {
         data["payeeId"] = this.payeeId;
         data["paidAmount"] = this.paidAmount;
         data["settelementId"] = this.settelementId;
-        return data; 
+        return data;
     }
 }
 

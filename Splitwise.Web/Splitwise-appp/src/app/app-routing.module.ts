@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ActivitiesComponent } from './activities/activities.component';
 import { AddExpensesComponent } from './add-expenses/add-expenses.component';
 import { AddGroupComponent } from './add-group/add-group.component';
+import { Authguard } from './authguard';
 import { ContainerComponent } from './container/container.component';
 import { CreatepaymentsComponent } from './createpayments/createpayments.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -20,9 +21,9 @@ const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
   {path:"resetpass",component:ResetpasswordComponent},
-  {path:"splitwise",component:ContainerComponent,children:[
+  {path:"splitwise",component:ContainerComponent,canActivate:[Authguard],children:[
 
-    {path:"dashboard",component:DashboardComponent},
+    {path:"dashboard",component:DashboardComponent,canActivateChild:[Authguard]},
     {path:"myexpenses",component:MyExpensesComponent},
     {path:"mygroups",component:MyGroupsComponent},
     {path:"expenseinfo/:id",component:EditComponent},

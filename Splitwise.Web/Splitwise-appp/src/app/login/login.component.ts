@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ILoginModel } from 'src/Models/ILoginModel';
 import { Splitwise } from '../Services/SplitWiseApi';
 
@@ -17,16 +18,26 @@ export class LoginComponent implements OnInit {
   
    
 
-  constructor(private service:Splitwise.AccountClient) { }
+  constructor(private service:Splitwise.AccountClient,
+              private router:Router) { }
 
   ngOnInit(): void {
   }
 
   login(){
     
-    this.service.login(this.User).subscribe(x=>console.log(x.data),
+    this.service.login(this.User).subscribe(x=>{
+          
+      var token=x["token"];
+      const payLoad = JSON.parse(window.atob(token.split('.')[1]));
+          
+      localStorage.setItem("token",token);
+      localStorage.setItem("id",payLoad["id"]);
+      this.router.navigate(["/splitwise/dashboard"]);
+    },
     err=>{
-      console.log();
+    
+    this.error="Invalid credentials"
     })
   }
 

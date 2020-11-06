@@ -1,1 +1,94 @@
-<p>editgroup works!</p>
+
+
+<div class="container mt-5">
+
+    <div class="w-25" style="float: left;">
+    <h5 class="bg-dark text-center text-white p-3">Group Edit</h5>
+<form #form="ngForm">
+   
+    
+    
+    <div class="form-group">
+    <label>Members</label>
+    
+   
+    <div class="row ml-1">
+    <select class="form-control w-75" name="Members"  [(ngModel)]="MemberId" #Id="ngModel" >
+        <option *ngFor="let item of Friends" value="{{item.id}}" >{{item?.email}}</option>
+        
+    </select>
+    &nbsp;&nbsp;
+    <div>
+    <button class="btn btn-success bg-dark h5" (click)="Addmember(MemberId)"  >+</button>
+    </div>
+    &nbsp;&nbsp;
+    
+   
+
+</div>
+</div>
+
+<div>
+    <label for="Title">Title</label>
+    <input class="form-control w-100 " type="text" id="Title" [(ngModel)]="Group?.group.title" name="Title==">
+</div>
+
+<div>
+    <label for="date">Date</label>
+    <input class="form-control w-100" type="date" id="date" name="date" [(ngModel)]="Group?.group.date">
+</div>
+
+<br>
+<div>
+    <input type="button" value="Add group" class="btn btn-success bg-dark" (click)="Editgroup()">
+</div>
+</form>
+</div>
+<div style="float:right;border-left:solid 1px gray ;" class="w-75">
+    <h5 class="bg-dark text-center text-white p-3">Group info</h5>
+    <div class="w-50 float-left">
+        <table class="text-center w-100 ml-5 mt-4" border="1">
+         
+                <th class="bg-light-gray" colspan="3" >Details</th>
+
+            <tr><td><h6>Title:</h6></td><td>{{Group?.group.title}}</td></tr>
+            <tr><td><h6>Amount:</h6></td><td>{{Group?.group.amount}}</td></tr>
+            <tr><td><h6>Date:</h6></td><td>{{Group?.group.date}}</td></tr>
+            <!-- <tr><h6><td>Createdby:</h6></td><td>{{Group.group.creator.username}}</td></tr>
+            <tr><td><h6>Members Count</h6></td> -->
+            <!-- <td>{{Group.members.length}}</td></tr> -->
+            <tr>
+                <td><h6>Expenses Count</h6></td>
+                <td>{{Group?.expenses.length}}</td>
+            </tr>
+
+        </table>
+
+    </div>
+    
+    <div style="float:right;width: 40%;" class="mt-4" >
+        <table border="1" class="text-center w-100" >
+            <th colspan="2">Members</th>
+            <tr *ngFor="let item of Group?.members">
+               
+                <td> {{item?.email}}</td>
+                <td><button class="text-danger bg-white border-0" (click)="Removeitem(item)">X</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="w-75 mt-5 float-left" >context.GroupsofExpenses.RemoveRange(groupExpenses);
+        context.SaveChanges();
+
+        <table class="w-100 text-center  ml-5"  border="1">
+            <thead><th colspan="2">Expenses</th></thead>
+            <tbody *ngFor="let item of Group?.expenses">
+                <tr><td>{{item?.title}}</td><td><button class="text-danger bg-white border-0" (click)="Removeexpense(item.id)">X</button></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</div>
+
+

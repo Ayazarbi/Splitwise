@@ -23,7 +23,7 @@ public class AccountController : ControllerBase
 
     [Route("Register")]
     [HttpPost]
-    public async Task<ActionResult> Register(SignupModel model){
+    public async Task<ActionResult<object>> Register(SignupModel model){
 
         var user=new Applicationuser(){
             Email=model.Email,
@@ -42,16 +42,21 @@ public class AccountController : ControllerBase
 
     [Route("Login")]
     [HttpPost]
-    public async Task<ActionResult<object>> Login(LoginModel model){
+    public async Task<ActionResult> Login(LoginModel model){
 
     var key = Encoding.UTF8.GetBytes("1234567890123456");
 
       if(await accountRepository.Login(model)){
 
+    
+          var user=await userManager.FindByEmailAsync(model.Email);
           var tokendescriptor=new SecurityTokenDescriptor{
 
+                       
                         Subject= new ClaimsIdentity(new Claim[]{
-                            new Claim("Email", model.Email),
+                            new Claim("Email", user.Email),
+                            new Claim("id",user.Id)
+                            
                             
                             
 
@@ -62,7 +67,7 @@ public class AccountController : ControllerBase
                     var tokenhandler=new JwtSecurityTokenHandler();
                     var Securitytoken=tokenhandler.CreateToken(tokendescriptor);
                     var token=tokenhandler.WriteToken(Securitytoken);
-        return Ok(new{token=token});
+        return Ok(new {token=token});
 
       }
       return BadRequest("Invalid Credetials");
