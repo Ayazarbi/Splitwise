@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Splitwise } from './Services/SplitWiseApi';
+import { SplitWise } from './Services/SplitWiseApi';
 
 @Injectable({
     providedIn:"root"
@@ -9,7 +9,7 @@ import { Splitwise } from './Services/SplitWiseApi';
   })
 export class Authguard implements CanActivate {
 
-    constructor(private service:Splitwise.AccountClient,
+    constructor(private service:SplitWise.AccountClient,
                 private router:Router){
 
     }

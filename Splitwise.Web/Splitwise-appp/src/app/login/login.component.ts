@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ILoginModel } from 'src/Models/ILoginModel';
-import { Splitwise } from '../Services/SplitWiseApi';
+import { SplitWise } from '../Services/SplitWiseApi';
 
 
 @Component({
@@ -13,12 +13,12 @@ export class LoginComponent implements OnInit {
 
   
   error:string;
-  User:Splitwise.LoginModel={email:"",password:"",init:null,toJSON:null};
+  User:SplitWise.LoginModel={email:"",password:"",init:null,toJSON:null};
 
   
    
 
-  constructor(private service:Splitwise.AccountClient,
+  constructor(private service:SplitWise.AccountClient,
               private router:Router) { }
 
   ngOnInit(): void {

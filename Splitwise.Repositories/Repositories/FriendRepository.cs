@@ -37,24 +37,25 @@ public class FriendRepository:IFriend{
 
     }
 
-    public  async Task<Applicationuser> Deletefriend(int frirndId){
+    public  async Task<Applicationuser> Deletefriend(string userid,string friendid){
 
         var activity=new Activity(); 
-         var friend=context.Friends.ToList().FirstOrDefault(x=>x.FriendId==frirndId);
+         var friend=context.Friends.ToList().FirstOrDefault(x=>x.UserId==userid && x.FrndId==friendid);
          if(friend!=null){
              var user=await UserManager.FindByIdAsync(friend.FrndId);
              context.Friends.Remove(friend);
              context.SaveChanges();
              activity.Activitydata="You removed"+user.UserName+"From your friend list";
-             return user;
-         }
-         activity.Date=DateTime.Now.ToString();
+             activity.Date=DateTime.Now.ToString();
          activity.UserId=friend.UserId;
 
         
             
             context.Activities.Add(activity);
             context.SaveChanges();
+             return user;
+         }
+         
 
 
          return null;

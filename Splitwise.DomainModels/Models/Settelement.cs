@@ -4,7 +4,7 @@ public class Settelement{
 
     public int SettelementId { get; set; }
     [ForeignKey("Expense")]
-    public int ExpenseId { get; set; }  
+    public int? ExpenseId { get; set; }  
 
     public Expense Expense{get;  set;}
 

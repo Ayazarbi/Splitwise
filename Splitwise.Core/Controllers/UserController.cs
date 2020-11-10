@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -8,15 +9,24 @@ public class UserController:Controller{
     private readonly IGroup groupRepository;
     private readonly IActivity activityRepository;
     private readonly ITransaction paymentRepository;
+    private readonly IAccount accountrepositpry;
 
     public UserController(
-        IExpense expenseRepository,IGroup groupRepository,IActivity activityRepository ,ITransaction paymentRepository
+        IExpense expenseRepository,IGroup groupRepository,IActivity activityRepository ,ITransaction paymentRepository,IAccount accountrepositpry
     )
     {
         this.expenseRepository = expenseRepository;
         this.groupRepository = groupRepository;
         this.activityRepository = activityRepository;
         this.paymentRepository = paymentRepository;
+        this.accountrepositpry = accountrepositpry;
+    }
+
+    [HttpGet]
+    public ActionResult<IEnumerable<Applicationuser>> getallusers(){
+
+            return Ok(accountrepositpry.Getalluser());
+    
     }
 
 
@@ -40,7 +50,7 @@ public class UserController:Controller{
     [HttpGet("{id}/Transactions")]
     public ActionResult<IEnumerable<Transaction>> GetuserTransaction(string id){
 
-        return Ok(paymentRepository.GetUsertransactions(id));
+        return Ok(paymentRepository.GetUsertransactionsAsync(id));
     }
 
 

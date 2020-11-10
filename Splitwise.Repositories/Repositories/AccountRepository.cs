@@ -46,53 +46,128 @@ public class AccountRepository:IAccount{
 
     }
 
-    public async Task<UserModel> GetUserinfo(string id)
+    async Task<UserModel> IAccount.GetUserinfo(string id)
     {
 
-        List<PayerModel> Owesfrom=new List<PayerModel>();
-        List<PayerModel> Owsto=new List<PayerModel>();
+        List<PayerModel> OF=new List<PayerModel>();
+        List<PayerModel> OT=new List<PayerModel>();
         UserModel  userModel=new UserModel();
         userModel.User=await userManager.FindByIdAsync(id);
         userModel.Expenses=expenserepo.GetUserExpense(id);
         userModel.Groups=grouprepo.GetUserGroups(id).ToList();
         userModel.Activities=activityrepo.GetUserActivities(id).ToList();
-        userModel.Transactions=transactionrepo.GetUsertransactions(id).ToList();
+        userModel.Transactions=await transactionrepo.GetUsertransactionsAsync(id);
         
 
         var settelements=context.Settelements.ToList().Where(x=>x.BorrowerId==id || x.LenterId==id);
 
-        foreach (var item in settelements)
-        {
-            if(item.BorrowerId==id){
-            var lenter=await userManager.FindByIdAsync(item.LenterId);
-             PayerModel payerModel=new PayerModel(){
+        var OWESTO=(from item in settelements
+                    where item.BorrowerId==id
+                    group item by item.LenterId into Owesto
+                    orderby Owesto.Key
+                    select new {
+                        
+                        name=Owesto.Key,
+                        amount=Owesto.Sum(x=>x.SettelementAmount)
 
-                 Amount=item.SettelementAmount,
-                 Payer=lenter,
-                    
-             };
 
-             Owsto.Add(payerModel);
+                    }).ToList();
 
+        var OWESFROM=(from item in settelements
+                    where item.LenterId==id
+                    group item by item.BorrowerId into Owesfrom
+                    orderby Owesfrom.Key
+                    select new {
+                        
+                        name=Owesfrom.Key,
+                        amount=Owesfrom.Sum(x=>x.SettelementAmount)
+
+
+                    }).ToList();
+
+
+        if(OWESTO.Count==0){
+
+            foreach (var item in OWESFROM)
+            {
+                var user=await userManager.FindByIdAsync(item.name);
+                
+                PayerModel pm=new PayerModel(){
+                    Amount=item.amount,
+                    Payer=user,
+                    PayerId=user.Id,
+                };
+
+                OF.Add(pm);
+                
             }
-             else{
-                var borroer=await userManager.FindByIdAsync(item.BorrowerId);
-                var payerModell=new PayerModel();
-                    payerModell.Payer=borroer;
-                    payerModell.Amount=item.SettelementAmount;
-                    payerModell.PayerId =borroer.Id;
+
+        }
+        if(OWESFROM.Count==0){
+
+            foreach (var item in OWESTO)
+            {
+                var user=await userManager.FindByIdAsync(item.name);
+                
+                PayerModel pm=new PayerModel(){
+                    Amount=item.amount,
+                    Payer=user,
+                    PayerId=user.Id,
+                };
+
+                OT.Add(pm);
+                
+            }
 
 
-                Owesfrom.Add(payerModell);
-             }
-
-    
         }
 
-    userModel.Owesfrom=Owesfrom;
-    userModel.Owsto=Owsto;
-    return userModel;
+        foreach (var item in OWESTO)
+        {
+            var user=await userManager.FindByIdAsync(item.name);
+            PayerModel pmm=new PayerModel(){
+                Amount=0,
+                Payer=user,
+                PayerId=user.Id
+            };
+            foreach (var subitem in OWESFROM)
+            {
+                if(item.name==subitem.name){
+                    var result=item.amount-subitem.amount;
+                    if(result>0){
+                        
+                        pmm.Amount=result;
+                        OT.Add(pmm);
     
+                    }
+                    else if(result<0){
+
+                        pmm.Amount=result*-1;
+                        OF.Add(pmm);
+                    }
+                    else{
+                        continue;
+                    }
+
+
+                }
+            }
+        }
+                
+        
+      
+
+       
+      userModel.Owesfrom=OF.ToList();
+      userModel.Owsto=OT.ToList();
+    return userModel;
+     
+    
+    }
+
+    public IEnumerable<Applicationuser> Getalluser(){
+         
+         return context.Users.ToList();
     }
 
 

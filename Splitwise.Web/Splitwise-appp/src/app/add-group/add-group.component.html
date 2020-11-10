@@ -11,23 +11,27 @@
     
    
     <div class="row ml-1">
-    <select class="form-control w-25" name="Members" [(ngModel)]="Memberemail" #id="ngModel" >
-        <option *ngFor="let item of Friends" [value]="item.id">{{item.email}}</option>
+    <select class="form-control w-25" name="Members" [(ngModel)]="Memberemail" #id="ngModel" [class.border-danger]="Group.members.length==0">
+        <option *ngFor="let item of Friends" [value]="item.email">{{item.email}}</option>
         
-    </select>
+    </select><br>
+   
     &nbsp;&nbsp;
     <div>
-    <button class="btn btn-success bg-dark h5" (click)="Addmember(id.value)" >+</button>
+    <button class="btn btn-success bg-dark h5" (click)="Addmember(Memberemail)" >+</button>
+    </div>
+    <div *ngIf="id.touched && Group.members.length==0" class=" text-danger"> 
+    <p>Members cannot be empty</p>
     </div>
     &nbsp;&nbsp;
     
     <div style="float: right;margin-right:4in;margin-bottom: 30px;">
         <table >
             <th>Members</th>
-            <tr *ngFor="let item of Members">
+            <tr *ngFor="let item of Group.members">
                
-                <td> {{item.email}}</td>
-                <td><button class="text-danger bg-white border-0" (click)="Removeitem(item)">X</button></td>
+                <td> {{item?.email}}</td>
+                <td><button class="text-danger bg-white border-0" (click)="Removeitem(item?.id)">X</button></td>
             </tr>
         </table>
     </div>
@@ -37,19 +41,19 @@
 
 <div>
     <label for="Title">Title</label>
-    <input class="form-control w-25 " type="text" id="Title" [(ngModel)]="Title" name="Title">
+    <input class="form-control w-25 " type="text" id="Title" [(ngModel)]="Title" name="Title" #title="ngModel" required [class.border-danger]="title.touched&&title.invalid">
 </div>
-
+<span *ngIf="title.touched && title.errors?.required" class=" text-danger"> Title cannot be empty</span>
 <div>
     <label for="date">Date</label>
-    <input class="form-control w-25" type="date" id="date" name="date" [(ngModel)]="Date">
+    <input class="form-control w-25" type="date" id="date" name="date" [(ngModel)]="Date" #date="ngModel" [class.border-danger]="date.touched&&date.invalid" required>
 </div>
+<span *ngIf="date.touched && date.invalid" class=" text-danger"> Date cannot be empty</span>
 
 <br>
 <div>
-    <input type="button" value="Add group" class="btn btn-success bg-dark" (click)="Addgroup()">
+    <input type="button" value="Add group" class="btn btn-success bg-dark" (click)="Addgroup()" [disabled]="form.invalid || Group.members.length==0 ">
 </div>
 </form>
 </div>
 
-{{ form.value|json}}

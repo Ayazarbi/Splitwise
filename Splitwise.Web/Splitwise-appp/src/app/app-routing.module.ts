@@ -7,8 +7,8 @@ import { Authguard } from './authguard';
 import { ContainerComponent } from './container/container.component';
 import { CreatepaymentsComponent } from './createpayments/createpayments.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditexpenseComponent } from './editexpense/editexpense.component';
 import { EditgroupComponent } from './editgroup/editgroup.component';
-import { EditComponent } from './Expenseinfo/edit/edit.component';
 import { LoginComponent } from './login/login.component';
 import { MyExpensesComponent } from './my-expenses/my-expenses.component';
 import { MyGroupsComponent } from './my-groups/my-groups.component';
@@ -26,12 +26,13 @@ const routes: Routes = [
     {path:"dashboard",component:DashboardComponent,canActivateChild:[Authguard]},
     {path:"myexpenses",component:MyExpensesComponent},
     {path:"mygroups",component:MyGroupsComponent},
-    {path:"expenseinfo/:id",component:EditComponent},
     {path:"groupinfo/:id",component:EditgroupComponent},
+    {path:"expenseinfo/:id",component:EditexpenseComponent},
     {path:"addgroup",component:AddGroupComponent},
     {path:"addexpense",component:AddExpensesComponent},
     {path:"activities/:id",component:ActivitiesComponent},
-    {path:"pay",component:CreatepaymentsComponent,}
+    {path:"pay",component:CreatepaymentsComponent,},
+    {path:"activity",component:ActivitiesComponent}
   ]}
 
   

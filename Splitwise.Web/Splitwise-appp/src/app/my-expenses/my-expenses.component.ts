@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IExpense } from 'src/Models/IExpense';
+import { SplitWise } from '../Services/SplitWiseApi';
 
 @Component({
   selector: 'app-my-expenses',
@@ -7,16 +8,26 @@ import { IExpense } from 'src/Models/IExpense';
   styleUrls: ['./my-expenses.component.css']
 })
 export class MyExpensesComponent implements OnInit {
-  expenses:IExpense[]=[
-    {amount:0,date:"",expenseId:
-    1,group:null,groupId:1,splitType:"equally",title:"title",user:null,userId:"11"},
-    {amount:0,date:"",expenseId:
-    1,group:null,groupId:1,splitType:"equally",title:"title",user:null,userId:"11"},
+  expenses:SplitWise.Expense[];
+  //   {amount:0,date:"",expenseId:
+  //   1,group:null,groupId:1,splitType:"equally",title:"title",user:null,userId:"11"},
+  //   {amount:0,date:"",expenseId:
+  //   1,group:null,groupId:1,splitType:"equally",title:"title",user:null,userId:"11"},
  
-  ];
-  constructor() { }
+  // ];
+  constructor(private expenseservice:SplitWise.UserClient) {
+
+   }
 
   ngOnInit(): void {
+    this.expenseservice.getUserExpenses(localStorage.getItem("id")).subscribe(x=>{
+      this.expenses=x;
+    },
+    err=>{
+      console.log(err)
+    })
+  
+  
   }
 
 }

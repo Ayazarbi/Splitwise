@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MemberModel } from 'src/Models/Membermodel';
-import { Splitwise } from '../Services/SplitWiseApi';
+import { SplitWise } from '../Services/SplitWiseApi';
 
 @Component({
   selector: 'app-editgroup',
@@ -14,42 +14,41 @@ export class EditgroupComponent implements OnInit {
   MemberId:string="";
   MemebersId:string[]=[];
 
-  Friends:Splitwise.Applicationuser[];
-  Group:Splitwise.GroupModel;
-  constructor(private groupservice:Splitwise.GroupClient,
+  Friends:SplitWise.Applicationuser[];
+  Group:SplitWise.GroupModel;
+  constructor(private groupservice:SplitWise.GroupClient,
               private Route:ActivatedRoute,
-              private friendservice:Splitwise.FriendsClient) { }
+              private friendservice:SplitWise.FriendsClient) { }
   Id:number;
   ngOnInit(): void {
    this.Id=+this.Route.snapshot.paramMap.get("id");
    console.log(this.Id);
-   this.friendservice.getfriend("aa54591c-4da7-424f-8a34-ded81b2063fc").subscribe(x=>this.Friends=x)
+   this.friendservice.getfriend(localStorage.getItem("id")).subscribe(x=>this.Friends=x)
     this.groupservice.getGroup(this.Id).subscribe(x=>{
       this.Group=x;
-      for (let key in this.Group?.members) {  
-            var member:MemberModel={email:this.Group?.members[key]?.email,memberId:this.Group.members[key]?.id};
-            this.Members.push(member);  
-      }
-      
-    });
+  });
+
+  
   }
 
   Addmember(email){
     var member=this.Friends.find(x=>x.id==email);
     this.Group?.members.push(member);
-    this.MemebersId.push(email);
+    this.Group?.membersId.push(email);
     console.log(email)
   }
   Removeitem(item){
 
     let index=this.Group?.members.indexOf(item);
     this.Group?.members.splice(index,1);
+    let index2=this.Group?.membersId.indexOf(item.id);
+    this.Group?.membersId.splice(index2,1);
 
   }
   Editgroup(){
+    
 
-    this.Group.membersId=this.MemebersId;
-
+   
     console.log(this.Group); 
     
        this.groupservice.edit(this.Id,this.Group).subscribe(x=>console.log(x))
@@ -61,5 +60,7 @@ export class EditgroupComponent implements OnInit {
     this.Group?.expenses.splice(index,1);
 
   }
+
+  
 
 }

@@ -18,8 +18,4 @@ public class Transaction{
 
     public double PaidAmount { get; set; }
 
-    [ForeignKey("Settelement")]
-    public int SettelementId { get; set; }  
-
-    public Settelement Settelement { get; set; }
-}
+   }

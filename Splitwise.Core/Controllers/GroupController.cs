@@ -53,7 +53,11 @@ public class GroupController:Controller{
         return Ok(groupRepository.Editgroup(id,groupModel));
     }
 
+    [HttpGet]
+    public ActionResult<IEnumerable<Group>> Getallgroups(){
 
+        return Ok(groupRepository.getallgroups());
+    }
 
     
 }

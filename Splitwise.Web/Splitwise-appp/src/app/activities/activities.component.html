@@ -1,1 +1,23 @@
-<p>activities works!</p>
+
+<div class="container mt-5">
+    <h5 class="bg-dark text-white p-3 text-center">Activities</h5>
+    <table class="text-center w-100" >
+        <thead>
+            <tr class="bg-lightt" >
+                <th>
+                    Activity info
+                </th>
+                <th>
+                    Date
+                </th>
+            </tr>
+        </thead>
+        <tr *ngFor="let item of Activities">
+            <td style="border:lightgray solid 1px" >
+                 {{item?.activitydata}}   
+            </td>
+            <td style="border:lightgray solid 1px">{{item?.date}}</td>
+        </tr>
+    </table>
+
+</div>

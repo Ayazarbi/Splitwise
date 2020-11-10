@@ -12,7 +12,7 @@ import { Observable, throwError as _observableThrow, of as _observableOf } from 
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 
-export module Splitwise {
+export module SplitWise {
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 @Injectable()
@@ -90,6 +90,11 @@ export class AccountClient {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "https://localhost:5001";
     }
 
+    logout(){
+        localStorage.removeItem("id"),
+        localStorage.removeItem("token");
+    }
+
     register(model: SignupModel): Observable<FileResponse> {
         let url_ = this.baseUrl + "/Account/Register";
         url_ = url_.replace(/[?&]$/, "");
@@ -140,15 +145,6 @@ export class AccountClient {
         return _observableOf<FileResponse>(<any>null);
     }
 
-    checklogin(){
-
-        var token=localStorage.getItem("token")
-        if(token){
-            return true;
-        }
-        return false;
-    }
-
     login(model: LoginModel) {
         let url_ = this.baseUrl + "/Account/Login";
         url_ = url_.replace(/[?&]$/, "");
@@ -180,7 +176,6 @@ export class AccountClient {
         //         return <Observable<FileResponse>><any>_observableThrow(response_);
         // }));
     }
-
     protected processLogin(response: HttpResponseBase): Observable<FileResponse> {
         const status = response.status;
         const responseBlob =
@@ -199,6 +194,15 @@ export class AccountClient {
             }));
         }
         return _observableOf<FileResponse>(<any>null);
+    }
+
+    checklogin(){
+
+        var token=localStorage.getItem("token")
+        if(token){
+            return true;
+        }
+        return false;
     }
 
     chanagepassword(id: string | null, model: ResetpasswordModel): Observable<Applicationuser> {
@@ -307,34 +311,31 @@ export class AccountClient {
         return _observableOf<UserModel>(<any>null);
     }
 
-    logout(){
+    // logout(){
+    //     // let url_ = this.baseUrl + "/Account";
+    //     // url_ = url_.replace(/[?&]$/, "");
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("id");
-        // let url_ = this.baseUrl + "/Account";
-        // url_ = url_.replace(/[?&]$/, "");
+    //     // let options_ : any = {
+    //     //     observe: "response",
+    //     //     responseType: "blob",
+    //     //     headers: new HttpHeaders({
+    //     //         "Accept": "application/octet-stream"
+    //     //     })
+    //     // };
 
-        // let options_ : any = {
-        //     observe: "response",
-        //     responseType: "blob",
-        //     headers: new HttpHeaders({
-        //         "Accept": "application/octet-stream"
-        //     })
-        // };
-
-        // return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-        //     return this.processLogout(response_);
-        // })).pipe(_observableCatch((response_: any) => {
-        //     if (response_ instanceof HttpResponseBase) {
-        //         try {
-        //             return this.processLogout(<any>response_);
-        //         } catch (e) {
-        //             return <Observable<FileResponse>><any>_observableThrow(e);
-        //         }
-        //     } else
-        //         return <Observable<FileResponse>><any>_observableThrow(response_);
-        // }));
-    }
+    //     // return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+    //     //     return this.processLogout(response_);
+    //     // })).pipe(_observableCatch((response_: any) => {
+    //     //     if (response_ instanceof HttpResponseBase) {
+    //     //         try {
+    //     //             return this.processLogout(<any>response_);
+    //     //         } catch (e) {
+    //     //             return <Observable<FileResponse>><any>_observableThrow(e);
+    //     //         }
+    //     //     } else
+    //     //         return <Observable<FileResponse>><any>_observableThrow(response_);
+    //     // }));
+    // }
 
     // protected processLogout(response: HttpResponseBase): Observable<FileResponse> {
     //     const status = response.status;
@@ -797,33 +798,37 @@ export class FriendsClient {
         return _observableOf<Applicationuser[]>(<any>null);
     }
 
-    delete(friendid: number): Observable<Applicationuser> {
-        let url_ = this.baseUrl + "/Friends/{friendid}";
-        if (friendid === undefined || friendid === null)
-            throw new Error("The parameter 'friendid' must be defined.");
-        url_ = url_.replace("{friendid}", encodeURIComponent("" + friendid));
-        url_ = url_.replace(/[?&]$/, "");
+    delete(userid:string,friendid:string): Observable<Applicationuser> {
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Accept": "application/json"
-            })
-        };
 
-        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processDelete(<any>response_);
-                } catch (e) {
-                    return <Observable<Applicationuser>><any>_observableThrow(e);
-                }
-            } else
-                return <Observable<Applicationuser>><any>_observableThrow(response_);
-        }));
+
+        return this.http.delete<Applicationuser>(this.baseUrl+"/Friends"+"/"+userid+"/"+friendid);
+        // let url_ = this.baseUrl + "/Friends/{friendid}";
+        // if (friendid === undefined || friendid === null)
+        //     throw new Error("The parameter 'friendid' must be defined.");
+        // url_ = url_.replace("{friendid}", encodeURIComponent("" + friendid));
+        // url_ = url_.replace(/[?&]$/, "");
+
+        // let options_ : any = {
+        //     observe: "response",
+        //     responseType: "blob",
+        //     headers: new HttpHeaders({
+        //         "Accept": "application/json"
+        //     })
+        // };
+
+        // return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        //     return this.processDelete(response_);
+        // })).pipe(_observableCatch((response_: any) => {
+        //     if (response_ instanceof HttpResponseBase) {
+        //         try {
+        //             return this.processDelete(<any>response_);
+        //         } catch (e) {
+        //             return <Observable<Applicationuser>><any>_observableThrow(e);
+        //         }
+        //     } else
+        //         return <Observable<Applicationuser>><any>_observableThrow(response_);
+        // }));
     }
 
     protected processDelete(response: HttpResponseBase): Observable<Applicationuser> {
@@ -910,6 +915,58 @@ export class GroupClient {
             }));
         }
         return _observableOf<Group>(<any>null);
+    }
+
+    getallgroups(): Observable<Group[]> {
+        let url_ = this.baseUrl + "/Group";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetallgroups(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetallgroups(<any>response_);
+                } catch (e) {
+                    return <Observable<Group[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<Group[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetallgroups(response: HttpResponseBase): Observable<Group[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(Group.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<Group[]>(<any>null);
     }
 
     getGroup(id: number): Observable<GroupModel> {
@@ -1188,33 +1245,38 @@ export class PaymentClient {
     }
 
     add(transaction: TransactionModel): Observable<Transaction> {
-        let url_ = this.baseUrl + "/Payment";
-        url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(transaction);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            })
-        };
 
-        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processAdd(<any>response_);
-                } catch (e) {
-                    return <Observable<Transaction>><any>_observableThrow(e);
-                }
-            } else
-                return <Observable<Transaction>><any>_observableThrow(response_);
-        }));
+
+        return this.http.post<Transaction>(this.baseUrl+"/Payment",transaction);
+        // let url_ = this.baseUrl + "/Payment";
+        // url_ = url_.replace(/[?&]$/, "");
+
+        // const content_ = JSON.stringify(transaction);
+
+        // let options_ : any = {
+        //     body: content_,
+        //     observe: "response",
+        //     responseType: "blob",
+        //     headers: new HttpHeaders({
+        //         "Content-Type": "application/json",
+        //         "Accept": "application/json"
+        //     })
+        // };
+
+        // return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        //     return this.processAdd(response_);
+        // })).pipe(_observableCatch((response_: any) => {
+        //     if (response_ instanceof HttpResponseBase) {
+        //         try {
+        //             return this.processAdd(<any>response_);
+        //         } catch (e) {
+        //             return <Observable<Transaction>><any>_observableThrow(e);
+        //         }
+        //     } else
+        //         return <Observable<Transaction>><any>_observableThrow(response_);
+        // }));
     }
 
     protected processAdd(response: HttpResponseBase): Observable<Transaction> {
@@ -1516,6 +1578,10 @@ export class UserClient {
         }
         return _observableOf<Transaction[]>(<any>null);
     }
+
+    getallUsers(){
+       return this.http.get(this.baseUrl+"/User");
+    }
 }
 
 export class WeatherForecast implements IWeatherForecast {
@@ -1555,7 +1621,7 @@ export class WeatherForecast implements IWeatherForecast {
         data["temperatureC"] = this.temperatureC;
         data["temperatureF"] = this.temperatureF;
         data["summary"] = this.summary;
-        return data;
+        return data; 
     }
 }
 
@@ -1609,7 +1675,7 @@ export class SignupModel implements ISignupModel {
         data["confirmpassword"] = this.confirmpassword;
         data["mobilenumber"] = this.mobilenumber;
         data["balance"] = this.balance;
-        return data;
+        return data; 
     }
 }
 
@@ -1653,7 +1719,7 @@ export class LoginModel implements ILoginModel {
         data = typeof data === 'object' ? data : {};
         data["email"] = this.email;
         data["password"] = this.password;
-        return data;
+        return data; 
     }
 }
 
@@ -1732,7 +1798,7 @@ export class IdentityUserOfString implements IIdentityUserOfString {
         data["lockoutEnd"] = this.lockoutEnd ? this.lockoutEnd.toISOString() : <any>undefined;
         data["lockoutEnabled"] = this.lockoutEnabled;
         data["accessFailedCount"] = this.accessFailedCount;
-        return data;
+        return data; 
     }
 }
 
@@ -1774,7 +1840,7 @@ export class IdentityUser extends IdentityUserOfString implements IIdentityUser 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         super.toJSON(data);
-        return data;
+        return data; 
     }
 }
 
@@ -1806,7 +1872,7 @@ export class Applicationuser extends IdentityUser implements IApplicationuser {
         data = typeof data === 'object' ? data : {};
         data["balacnce"] = this.balacnce;
         super.toJSON(data);
-        return data;
+        return data; 
     }
 }
 
@@ -1848,7 +1914,7 @@ export class ResetpasswordModel implements IResetpasswordModel {
         data["email"] = this.email;
         data["password"] = this.password;
         data["confirmpassword"] = this.confirmpassword;
-        return data;
+        return data; 
     }
 }
 
@@ -1952,7 +2018,7 @@ export class UserModel implements IUserModel {
             for (let item of this.transactions)
                 data["transactions"].push(item.toJSON());
         }
-        return data;
+        return data; 
     }
 }
 
@@ -2018,7 +2084,7 @@ export class Expense implements IExpense {
         data["date"] = this.date;
         data["userId"] = this.userId;
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
-        return data;
+        return data; 
     }
 }
 
@@ -2077,7 +2143,7 @@ export class Group implements IGroup {
         data["createdby"] = this.createdby ? this.createdby.toJSON() : <any>undefined;
         data["date"] = this.date;
         data["amount"] = this.amount;
-        return data;
+        return data; 
     }
 }
 
@@ -2124,7 +2190,7 @@ export class PayerModel implements IPayerModel {
         data["payerId"] = this.payerId;
         data["payer"] = this.payer ? this.payer.toJSON() : <any>undefined;
         data["amount"] = this.amount;
-        return data;
+        return data; 
     }
 }
 
@@ -2174,7 +2240,7 @@ export class Activity implements IActivity {
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
         data["activitydata"] = this.activitydata;
         data["date"] = this.date;
-        return data;
+        return data; 
     }
 }
 
@@ -2235,7 +2301,7 @@ export class Transaction implements ITransaction {
         data["paidAmount"] = this.paidAmount;
         data["settelementId"] = this.settelementId;
         data["settelement"] = this.settelement ? this.settelement.toJSON() : <any>undefined;
-        return data;
+        return data; 
     }
 }
 
@@ -2305,7 +2371,7 @@ export class Settelement implements ISettelement {
         data["lenter"] = this.lenter ? this.lenter.toJSON() : <any>undefined;
         data["groupId"] = this.groupId;
         data["group"] = this.group ? this.group.toJSON() : <any>undefined;
-        return data;
+        return data; 
     }
 }
 
@@ -2372,7 +2438,7 @@ export class ExpenseModel implements IExpenseModel {
             for (let item of this.shares)
                 data["shares"].push(item.toJSON());
         }
-        return data;
+        return data; 
     }
 }
 
@@ -2428,7 +2494,7 @@ export class Share implements IShare {
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
         data["sharePercentage"] = this.sharePercentage;
         data["shareAmount"] = this.shareAmount;
-        return data;
+        return data; 
     }
 }
 
@@ -2482,7 +2548,7 @@ export class BorrowLentModel implements IBorrowLentModel {
         data["borrower"] = this.borrower ? this.borrower.toJSON() : <any>undefined;
         data["lenter"] = this.lenter ? this.lenter.toJSON() : <any>undefined;
         data["amount"] = this.amount;
-        return data;
+        return data; 
     }
 }
 
@@ -2534,7 +2600,7 @@ export class Friend implements IFriend {
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
         data["frndId"] = this.frndId;
         data["frnd"] = this.frnd ? this.frnd.toJSON() : <any>undefined;
-        return data;
+        return data; 
     }
 }
 
@@ -2607,7 +2673,7 @@ export class GroupModel implements IGroupModel {
             for (let item of this.membersId)
                 data["membersId"].push(item);
         }
-        return data;
+        return data; 
     }
 }
 
@@ -2655,7 +2721,7 @@ export class TransactionModel implements ITransactionModel {
         data["payeeId"] = this.payeeId;
         data["paidAmount"] = this.paidAmount;
         data["settelementId"] = this.settelementId;
-        return data;
+        return data; 
     }
 }
 

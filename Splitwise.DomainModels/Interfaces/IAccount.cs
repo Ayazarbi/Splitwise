@@ -10,4 +10,6 @@ public interface IAccount{
     public Applicationuser ResetPassword(string userid ,ResetpasswordModel model);
 
     public Task<UserModel> GetUserinfo(string id);
+
+    public IEnumerable<Applicationuser> Getalluser();
 }

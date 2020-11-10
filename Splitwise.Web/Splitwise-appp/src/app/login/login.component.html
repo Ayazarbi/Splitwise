@@ -7,13 +7,17 @@
     <form #myform="ngForm" (ngSubmit)="login()">
       <div class="form-group">
         <label for="Email">Email</label>
-        <input class="form-control" type="text" name="Email" id="Email" [(ngModel)]="User.email">
-      </div>
+        <input  type="text"  pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" class="form-control " id="Email" placeholder="Enter Email" [(ngModel)]="User.email" name="Email" #Em_name="ngModel" required [class.border-danger]="Em_name.touched && Em_name.invalid"  >
+        </div>
+        <span *ngIf="Em_name.touched && Em_name.errors?.required" class=" text-danger"> Email cannot be empty</span>
+        <span *ngIf="Em_name.touched && Em_name.errors?.pattern" class="text-danger">Invalid format</span>
 
       <div class="form-group">
         <label for="Passoword">Password</label>
-        <input class="form-control" type="password" name="Password" id="Password" [(ngModel)]="User.password">
-      </div>
+        <input class="form-control" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" type="password" name="Password" id="Password" [(ngModel)]="User.password" #pass="ngModel" [class.border-danger]="pass.touched&&pass.invalid" required placeholder="Enter Password" > 
+        </div>
+        <span *ngIf="pass.touched && pass.errors?.required" class=" text-danger"> Password cannot be empty</span>
+        <span *ngIf="pass.touched && pass.errors?.pattern" class="text-danger">Password must contain one upper one lower and one special charater and minimum length should be 8</span>
 
       <div>
         <a [routerLink]="['/resetpass']" routerLinkActive="router-link-active" > Forgot Password??</a>
@@ -23,7 +27,7 @@
 
       <div>
 
-        <input class="btn btn-primary bg-dark" type="submit" value="Login" >
+        <input class="btn btn-primary bg-dark" type="submit" value="Login" [disabled]="myform.invalid">
       </div>
       <div class="alert alert-danger text-danger h-25" *ngIf="error">
         <h6>{{error}}</h6>

@@ -108,7 +108,7 @@ public class ExpenseRepository:IExpense{
 
         var activity=new Activity(){
             Activitydata="You"+expenseModel.Expense.Title+"Added",
-            Date=expenseModel.Expense.Date,
+            Date=DateTime.Now.ToString(),
             UserId=expenseModel.Expense.UserId,
             };
 

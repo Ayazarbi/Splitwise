@@ -1,4 +1,4 @@
-<div class="container bg-light p-4"   >
+<div class="container bg-light p-4 float-left" style="margin-left: 3in;"   >
 
     <h3 class="bg-dark text-white text-center mt-5">Dashboard</h3>
     
@@ -7,56 +7,51 @@
         <div class="card bg-light" style="width: 14rem;height:17rem;scrollbar-width: 0px;">
             <img class="card-img-top h-50 " src="../../assets/user.jpeg" alt="Card image cap">
             <div class="card-body">
-              <h6>name</h6>
-              <h6>balance</h6>
+              <h6>{{model?.user.userName}}</h6>
+              <h6 class="">Balance: {{model?.user.balacnce}}</h6>
             </div>
           </div>
      </div>
    
     <div class="box" id="Expenses">
         <h6 class="bg-dark">Myexpense</h6>
-        <table align="left">
-            <tr *ngFor="let item of model.epenses">
-                <td><h6>{{item.title}}</h6></td>
-
-            </tr>
-
-        </table>
+            <ol type="1">
+            <li class="text-dark p-1" *ngFor="let item of model?.expenses"><a class="">{{item.title}}</a></li>
+             </ol>
+        
+       
         
 
     </div>
     <div class="box" id="groups">
-        <h6 class="bg-dark">Mygroups</h6>
-        <table align="left">
-            <tr *ngFor="let item of model.groups">
-                <td><h6>{{item.title}}</h6></td>
-
-            </tr>
-
-        </table>
+        <h6 class="bg-dark">MyGroups</h6>
+        <ol type="1">
+            <li class="text-dark p-1" *ngFor="let item of model?.groups"><a class="">{{item.title}}</a></li>
+         </ol>
+        
         
 
     </div>
-    <div class="box" id="friends">
+    <!-- <div class="box" id="friends">
         <h6 class="bg-dark">Friends</h6>
         <table align="left">
-            <tr *ngFor="let item of model.Friends">
+            <tr *ngFor="let item of model.friends">
                 <td><h6>{{item.username}}</h6></td>
 
             </tr>
 
         </table>
         
-    </div>
+    </div> -->
     <div class="box" id="transactions">
         <h6 class="bg-dark">Transaction</h6>
-        <table align="left">
-            <tr *ngFor="let item of model.transactions">
-                <td><h6>{{item.payerId}} paid {{item.paidAmount}} to {{item.payeeId}}</h6></td>
+       
 
-            </tr>
+        <ol type="1">
+            <li class="text-dark p-1" *ngFor="let item of model?.transactions"><a class="">{{item.payer.email}} paid {{item.paidAmount}} to {{item.payee.email}}</a></li>
+             </ol>
 
-        </table>
+        
         
     
 
@@ -64,26 +59,46 @@
     </div>
     <div class="box">
         <h6 class="bg-dark">Owes To</h6>
-        <table align="left">
-            <tr *ngFor="let item of model.owesto">
-                <td><h6>{{item.payerId}}</h6></td>
-                <td><h6>{{item.amount}}</h6></td>
-
-            </tr>
-
-        </table>
+       
+<ol type="1">
+            <li class="text-dark p-1" *ngFor="let item of model?.owsto"><a class="">{{item.payer.userName}} ows {{item.amount}} </a></li>
+             </ol>
     </div>
     <div class="box"> 
         <h6 class="bg-dark">Owes from</h6>
-        <table align="left">
-            <tr *ngFor="let item of model.owesfrom">
-                <td><h6>{{item.payerId}}</h6></td>
-                <td><h6>{{item.amount}}</h6></td>
 
-            </tr>
-
-        </table>
+        <ol type="1">
+            <li class="text-dark p-1" *ngFor="let item of model?.owesfrom"><a class="">{{item.payer.userName}} Owes You  {{item.amount}} Rs. </a></li>
+             </ol>
 
     </div>
+    
 
+  
+    </div>
+    </div>
+
+
+
+
+<div class="float-right bg-light text-center" style="height: 4in;width: 4in;margin-right: 1in;margin-top: 1in;">
+  
+    <h6>Add Friend</h6>
+    <div class="mt-4">
+    
+    <form>
+        <select class="w-50" [(ngModel)]="Friendemail" name="Friendemail"><option *ngFor="let item of Users" value="{{item?.id}}">{{item?.email}}</option></select>&nbsp;&nbsp;
+        <input type="submit"  (click)="Addfriend(Friendemail)" class="bg-dark text-white" value="Add friend">
+        
+    </form>
+    </div>
+    <div class="mt-5">
+    <h6> Friends</h6>
+        <div>
+            <table class="" align="center">
+                <tr *ngFor="let item of Friends"><td>{{item?.email}}</td><td><button class="text-danger" (click)="Deletefriend(item?.id)">X</button></td></tr>
+            </table>
+        </div>
+    </div>
 </div>
+

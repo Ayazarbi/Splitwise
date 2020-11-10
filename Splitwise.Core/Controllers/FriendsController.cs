@@ -25,8 +25,8 @@ public class FriendsController : Controller{
         return Ok(friends);
     }
 
-    [HttpDelete("{friendid}")]
-    public async Task<ActionResult<Applicationuser>> delete(int friendid){
-        return Ok( await friendRepository.Deletefriend(friendid));
+    [HttpDelete("{userid}/{friendid}")]
+    public async Task<ActionResult<Applicationuser>> delete(string userid,string friendid){
+        return Ok( await friendRepository.Deletefriend(userid,friendid));
     }
 }

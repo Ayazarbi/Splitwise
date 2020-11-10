@@ -1,15 +1,25 @@
 
 
 
-<div class="container mt-5 ">
-    <h5 class="bg-dark text-center text-white p-3">Add Expense</h5>
-<form #form="ngForm">
+
+ <div class="container ">
 
 
-<div   style="float: right;">
+<div   style="float: right;margin-right: 2in;">
+    <h5 class="bg-dark text-center text-white p-3">Expense info</h5>
+
+    <div>
+        <table>
+            <tr><td><b>Expense Name:</b>{{title}}</td><td></td></tr>
+            <tr><td><b>Expense Amount:</b>{{Amount}}</td><td></td></tr>
+            <tr><td><b>Date:</b>{{Date}}</td><td></td></tr>
+            <tr><td><b>Created by:</b>{{creator?.email}}</td><td></td></tr>
+           
+        </table>
+    </div>
 
     <div style="border: solid black 1px;">
-        <table  class="text-center "  align="center">
+        <table  class="text-center"  align="center">
             <th>Members</th>
             <tr *ngFor="let item of Members">
                
@@ -26,9 +36,9 @@
             <th>Amount</th>
             <tr *ngFor="let item of Shares">
                
-                <td> {{item?.user.email}}</td>
-                <td>{{item?.sharePercentage}}</td>
-                <td>{{item?.shareAmount}}</td>
+                <td> {{item.user.email}}</td>
+                <td>{{item.sharePercentage}}</td>
+                <td>{{item.shareAmount}}</td>
                 <td><button class="text-danger bg-white border-0" (click)="Removeshare(item)">X</button></td>
             </tr>
         </table>
@@ -40,8 +50,8 @@
             <th>Amount</th>
             <tr *ngFor="let item of Payers">
                
-                <td> {{item?.payer.email}}</td>
-                <td>{{item?.amount}}</td>
+                <td> {{item.payer.email}}</td>
+                <td>{{item.amount}}</td>
                 <td><button class="text-danger bg-white border-0" (click)="Removepayer(item)">X</button></td>
             </tr>
         </table>
@@ -51,27 +61,29 @@
 
 
 </div>
+<div class=" mt-5 w-50">
+<h5 class="bg-dark text-center text-white p-3">Edit Expense</h5>
+<form>
+
 
     <div class="form-group">
         <label>Group</label>
-        <select class="form-control w-25" name="Members" [(ngModel)]="Groupid" >
+        <select class="form-control w-100" name="Members" >
     <option *ngFor="let item of Groups" value="{{item.groupId}}">{{item.title}}</option>
             
             
         </select>
-           
-
     </div>
 
 
 
 
-    <div class="form-group">
+    
     <label>Members</label>
     
    
     <div class="row ml-1">
-    <select class="form-control w-25" name="Members" [(ngModel)]="Memberemail"  [class.border-danger]="Members.length==0">
+    <select class="form-control w-50" name="Members" [(ngModel)]="Memberemail" >
         <option *ngFor="let item of friends" value="{{item.id}}">{{item?.email}}</option>
        
     </select>
@@ -80,30 +92,26 @@
     <button class="btn btn-success bg-dark h5" (click)="Addmember(Memberemail)" >+</button>
     </div>
     &nbsp;&nbsp;
-    <span *ngIf="Members.length==0 && form.touched" class="text-danger">Members cannot be empty</span>
+    
    
 
 </div>
-</div>
+
 
 <div>
     <label for="Title">Title</label>
-    <input class="form-control w-25 " type="text" id="Title" [(ngModel)]="title" name="Title" #title1="ngModel" [class.border-danger]="title1.touched && title1.invalid" required>
+    <input class="form-control w-100" type="text" id="Title" name="Title" [(ngModel)]="title">
 </div>
-<span *ngIf="title1.touched && title1.errors?.required" class=" text-danger"> Title cannot be empty</span>
 
 <div>
     <label for="date">Date</label>
-    <input class="form-control w-25" type="date" id="date" name="date" [(ngModel)]="Date"#date1="ngModel" [class.border-danger]="date1.touched && date1.invalid" required>
+    <input class="form-control w-100" type="date" id="date" name="date" [(ngModel)]="Date">
 </div>
-<span *ngIf="date1.touched && date1.errors?.required" class=" text-danger"> Date cannot be empty</span>
-
 <div class="form-group">
     <label  for="amount" >Amount</label>
-    <input class="form-control w-25"type="number" id="amount" name="amount" [(ngModel)]="Amount"#amount1="ngModel" [class.border-danger]="amount1.touched && amount1.invalid" required>
-</div>
-<span *ngIf="amount1.touched && amount1.errors?.required" class=" text-danger"> Amount cannot be empty</span>
+    <input class="form-control w-100"type="number" id="amount" name="amount" [(ngModel)]="Amount">
 
+</div>
 <br>
 
 <div class="form-group">
@@ -114,7 +122,6 @@
     <input type="radio" [(ngModel)]="Splittype" value="Percentage" id="st" name="st">
 
 </div>
-<span *ngIf="!Splittype && form.touched" class=" text-danger"> Please select splittype</span>
 
 
 
@@ -124,19 +131,17 @@
     
    
     <div class="row ml-1">
-    <select class="form-control w-25" name="Members" [(ngModel)]="Smemberemail" [class.border-danger]="Shares.length==0 && form.touched">
-        <option *ngFor="let item of Members" value="{{item?.email}}">{{item?.email}}</option>
+    <select class="form-control w-25" name="Members" [(ngModel)]="Smemberemail" >
+        <option *ngFor="let item of Members" value="{{item.email}}">{{item.email}}</option>
         
     </select>
     <label> Percentage</label>
-    <input class="form-control w-auto" type="number" name="Membershare" [(ngModel)]="Membershare" #shareamount="ngModel" [class.border-danger]="shareamount.invalid">
+    <input class="form-control w-25" type="number" name="Membershare" [(ngModel)]="Membershare">
     <div>
         <button class="btn btn-success bg-dark h5" (click)="Addmembershare(Smemberemail,Membershare)" >+</button>
         </div>
         
     </div>
-    <span *ngIf="Shares.length==0 && form.touched" class="text-danger">Shares cannot be empty</span>
-    
 
 </div>
 <div>
@@ -146,13 +151,13 @@
         
        
         <div class="row ml-1">
-        <select class="form-control w-25" name="Members" [(ngModel)]="Payeremail" [class.border-danger]="Payers.length==0 && form.touched">
-            <option *ngFor="let item of Members" value="{{item?.email}}" >{{item?.email}}</option>    
+        <select class="form-control w-25" name="Members" [(ngModel)]="Payeremail" >
+            <option *ngFor="let item of Members" value="{{item.email}}" >{{item.email}}</option>    
         </select>
         &nbsp;
         <label> Amount</label>
         &nbsp;
-        <input class="form-control w-auto" type="number" name="paidamount" [(ngModel)]="Paidamount" #paidamount="ngModel" required [class.border-danger]="paidamount.invalid && form.touched" >
+        <input class="form-control w-25" type="number" name="paidamount" [(ngModel)]="Paidamount">
         &nbsp;
         <div>
             <button class="btn btn-success bg-dark h5" (click)="Addpayer(Payeremail,Paidamount)" >+</button>
@@ -163,12 +168,14 @@
     </div>
     <div>
 </div>
+</div>
 
     
 
-    <input type="button" value="Add Expense" class="btn btn-success bg-dark" (click)="Addexpense()" [disabled]="form.invalid || Members.length==0 || Payers.length==0 ">
-</div>
+    <input type="button" value="Add Expense" class="btn btn-success bg-dark" (click)="Addexpense()">
+
 </form>
+
 </div>
 
-
+</div>

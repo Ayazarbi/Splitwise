@@ -64,12 +64,14 @@ public class GroupRepository:IGroup{
         }
          var membersid=context.GroupMembers.ToList().Where(x=>x.GroupId==id);
         List<Applicationuser> membbers=new List<Applicationuser>();
+        List<string> listofmembersid=new List<string>();
          foreach (var item in membersid)
         {
             var user=await UserManager.FindByIdAsync(item.UserId);
             if(user!=null){
 
                 membbers.Add(user);
+                listofmembersid.Add(user.Id);
             }
         }
 
@@ -77,6 +79,8 @@ public class GroupRepository:IGroup{
             Group=group,
             Expenses=expenses,
             Members=membbers,
+            MembersId=listofmembersid,
+
         };
 
         return model;
@@ -152,10 +156,10 @@ public class GroupRepository:IGroup{
         
         var group=context.Groups.ToList().FirstOrDefault(x=>x.GroupId==id);
         context.Groups.Remove(group);
-        var groupMembers=context.GroupMembers.Where(x=>x.GroupId==id);
-        context.GroupMembers.RemoveRange(groupMembers);
-        var groupExpense=context.GroupsofExpenses.Where(x=>x.GroupId==id);
-        context.GroupsofExpenses.RemoveRange(groupExpense);
+        // var groupMembers=context.GroupMembers.Where(x=>x.GroupId==id);
+        // context.GroupMembers.RemoveRange(groupMembers);
+        // var groupExpense=context.GroupsofExpenses.Where(x=>x.GroupId==id);
+        // context.GroupsofExpenses.RemoveRange(groupExpense);
         context.SaveChanges();
 
        
@@ -207,5 +211,10 @@ public class GroupRepository:IGroup{
         
     }
 
+    
 
+    public IEnumerable<Group> getallgroups()
+    {
+        return context.Groups.ToList();
+    }
 }

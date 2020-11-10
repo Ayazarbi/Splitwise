@@ -16,9 +16,10 @@ import { ActivitiesComponent } from './activities/activities.component';
 import { CreatepaymentsComponent } from './createpayments/createpayments.component';
 import { EditgroupComponent } from './editgroup/editgroup.component';
 import { FormsModule } from '@angular/forms';
-import { Splitwise } from './Services/SplitWiseApi';
+import { SplitWise} from './Services/SplitWiseApi';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Authguard } from './authguard';
+import { EditexpenseComponent } from './editexpense/editexpense.component';
 
 
 
@@ -37,6 +38,7 @@ import { Authguard } from './authguard';
     ActivitiesComponent,
     CreatepaymentsComponent,
     EditgroupComponent,
+    EditexpenseComponent,
 
     
   ],
@@ -50,7 +52,7 @@ import { Authguard } from './authguard';
     
 
   ],
-  providers: [Splitwise.AccountClient ,Splitwise.UserClient,Splitwise.ExpenseClient,Splitwise.GroupClient,Splitwise.PaymentClient,Splitwise.FriendsClient],
+  providers: [SplitWise.AccountClient ,SplitWise.UserClient,SplitWise.ExpenseClient,SplitWise.GroupClient,SplitWise.PaymentClient,SplitWise.FriendsClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

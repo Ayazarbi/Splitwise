@@ -17,6 +17,6 @@ public interface IGroup{
 
     public Task<List<BorrowLentModel>> GetGroupCalculation(int id);
 
-
+    public IEnumerable<Group> getallgroups();
 
 }

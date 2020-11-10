@@ -2,14 +2,16 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Splitwise.DomainModels.Migrations
 {
     [DbContext(typeof(AppdbContext))]
-    partial class AppdbContextModelSnapshot : ModelSnapshot
+    [Migration("20201109083528_Changing expense id to allow null in seetelements")]
+    partial class Changingexpenseidtoallownullinseetelements
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -468,11 +470,16 @@ namespace Splitwise.DomainModels.Migrations
                     b.Property<string>("PayerId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
+                    b.Property<int>("SettelementId")
+                        .HasColumnType("int");
+
                     b.HasKey("TrasactionId");
 
                     b.HasIndex("PayeeId");
 
                     b.HasIndex("PayerId");
+
+                    b.HasIndex("SettelementId");
 
                     b.ToTable("Payments");
                 });
@@ -650,6 +657,12 @@ namespace Splitwise.DomainModels.Migrations
                     b.HasOne("Applicationuser", "Payer")
                         .WithMany()
                         .HasForeignKey("PayerId");
+
+                    b.HasOne("Settelement", "Settelement")
+                        .WithMany()
+                        .HasForeignKey("SettelementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

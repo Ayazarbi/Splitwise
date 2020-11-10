@@ -1,1 +1,36 @@
-<p>createpayments works!</p>
+<div style="margin-top: 1.5in; " class="w-50 container align-middle">
+  <div class="text-center">
+    <h3 class="bg-dark p-2  text-white">Payment</h3>
+  </div>
+  <div>
+    <form #myform="ngForm" (ngSubmit)="Payment()">
+      <div class="form-group">
+        <label for="payto">Payto</label>
+       <select id="payto" class="form-control w-50" [(ngModel)]="PayeeId" name="Payee">
+           <option *ngFor="let item of friends" value="{{item.id}}">{{item?.email}}</option>
+       </select>
+      </div>
+
+      <div class="form-group">
+        <label for="Passoword">Amount</label>
+        <input class="form-control" type="number" name="Password" id="Password" [(ngModel)]="Amount">
+      </div>
+
+     
+
+     
+
+      <div>
+
+        <input class="btn btn-primary bg-dark" type="submit" value="PAy"name >
+      </div>
+      <div class="alert alert-danger text-danger h-25" *ngIf="error">
+        <h6>{{error}}</h6>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
+   

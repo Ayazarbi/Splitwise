@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SplitWise } from '../Services/SplitWiseApi';
 
 @Component({
   selector: 'app-activities',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./activities.component.css']
 })
 export class ActivitiesComponent implements OnInit {
-
-  constructor() { }
+ 
+  Activities:SplitWise.Activity[];
+  constructor(
+    private activityservice:SplitWise.UserClient
+  ) { }
 
   ngOnInit(): void {
+    this.activityservice.getUserActivties(localStorage.getItem("id")).subscribe(x=>this.Activities=x)
+ 
   }
 
 }

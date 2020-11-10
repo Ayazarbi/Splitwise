@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Expense{
 
    
+
+   [ForeignKey("Group")]
     public  int? GroupId{get; set;}
 
     public Group Group{get; set;}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IRegisterModel } from 'src/Models/RegisterModel';
-import { Splitwise } from '../Services/SplitWiseApi';
+import { SplitWise } from '../Services/SplitWiseApi';
 
 @Component({
   selector: 'app-register',
@@ -15,9 +15,9 @@ export class RegisterComponent implements OnInit {
   confirmpassword:string;
   balance:number=0.0;
   mobilenumber:string;
-  User?:Splitwise.SignupModel={balance:0,mobilenumber:"",email:"",password:"",username:"",init:null,toJSON:null};
+  User?:SplitWise.SignupModel={balance:0,mobilenumber:"",email:"",password:"",username:"",init:null,toJSON:null};
   error:string;
-  constructor(private service:Splitwise.AccountClient) { }
+  constructor(private service:SplitWise.AccountClient) { }
 
   ngOnInit(): void {
   }

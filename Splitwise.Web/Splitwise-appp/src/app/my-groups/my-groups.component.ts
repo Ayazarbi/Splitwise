@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IGroup } from 'src/Models/IGroup';
-import { Splitwise } from '../Services/SplitWiseApi';
+import { SplitWise } from '../Services/SplitWiseApi';
 
 @Component({
   selector: 'app-my-groups',
@@ -8,12 +8,12 @@ import { Splitwise } from '../Services/SplitWiseApi';
   styleUrls: ['./my-groups.component.css']
 })
 export class MyGroupsComponent implements OnInit {
-  groups:Splitwise.Group[];
-  constructor(private service:Splitwise.UserClient) { }
+  groups:SplitWise.Group[];
+  constructor(private service:SplitWise.UserClient) { }
 
   ngOnInit(): void {
 
-      this.service.getUserGroups("15c37175-215a-47bc-b077-9dfc3c81441d").subscribe(
+      this.service.getUserGroups(localStorage.getItem("id")).subscribe(
         x=>this.groups=x
       );
     
