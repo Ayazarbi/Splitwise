@@ -24,7 +24,7 @@
             <tr *ngFor="let item of Members">
                
                 <td> {{item?.email}}</td>
-                <td><button class="text-danger bg-white border-0" (click)="Removeitem(item.id)">X</button></td>
+                <td ><button class="text-danger bg-white border-0" (click)="Removeitem(item.id)">X</button></td>
             </tr>
         </table>
     </div>
@@ -36,10 +36,10 @@
             <th>Amount</th>
             <tr *ngFor="let item of Shares">
                
-                <td> {{item.user.email}}</td>
+                <td> {{item.user?.email}}</td>
                 <td>{{item.sharePercentage}}</td>
                 <td>{{item.shareAmount}}</td>
-                <td><button class="text-danger bg-white border-0" (click)="Removeshare(item)">X</button></td>
+                <td><button class="text-danger bg-white border-0" (click)="Removeshare(item.shareId)"[hidden]="item.user?.id==Userid">X</button></td>
             </tr>
         </table>
     </div>
@@ -50,9 +50,9 @@
             <th>Amount</th>
             <tr *ngFor="let item of Payers">
                
-                <td> {{item.payer.email}}</td>
-                <td>{{item.amount}}</td>
-                <td><button class="text-danger bg-white border-0" (click)="Removepayer(item)">X</button></td>
+                <td> {{item.payer?.email}}</td>
+                <td>{{item?.amount}}</td>
+                <td><button class="text-danger bg-white border-0" (click)="Removepayer(item?.email)" >X</button></td>
             </tr>
         </table>
     </div>
@@ -68,7 +68,7 @@
 
     <div class="form-group">
         <label>Group</label>
-        <select class="form-control w-100" name="Members" >
+        <select class="form-control w-75" name="Members" >
     <option *ngFor="let item of Groups" value="{{item.groupId}}">{{item.title}}</option>
             
             
@@ -100,16 +100,16 @@
 
 <div>
     <label for="Title">Title</label>
-    <input class="form-control w-100" type="text" id="Title" name="Title" [(ngModel)]="title">
+    <input class="form-control w-75" type="text" id="Title" name="Title" [(ngModel)]="title">
 </div>
 
 <div>
     <label for="date">Date</label>
-    <input class="form-control w-100" type="date" id="date" name="date" [(ngModel)]="Date">
+    <input class="form-control w-75" type="date" id="date" name="date" [(ngModel)]="Date">
 </div>
 <div class="form-group">
     <label  for="amount" >Amount</label>
-    <input class="form-control w-100"type="number" id="amount" name="amount" [(ngModel)]="Amount">
+    <input class="form-control w-75"type="number" id="amount" name="amount" [(ngModel)]="Amount">
 
 </div>
 <br>
@@ -132,7 +132,7 @@
    
     <div class="row ml-1">
     <select class="form-control w-25" name="Members" [(ngModel)]="Smemberemail" >
-        <option *ngFor="let item of Members" value="{{item.email}}">{{item.email}}</option>
+        <option *ngFor="let item of Members" value="{{item?.email}}">{{item?.email}}</option>
         
     </select>
     <label> Percentage</label>
@@ -152,7 +152,7 @@
        
         <div class="row ml-1">
         <select class="form-control w-25" name="Members" [(ngModel)]="Payeremail" >
-            <option *ngFor="let item of Members" value="{{item.email}}" >{{item.email}}</option>    
+            <option *ngFor="let item of Members" value="{{item?.email}}" >{{item?.email}}</option>    
         </select>
         &nbsp;
         <label> Amount</label>

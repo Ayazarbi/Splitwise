@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 public class Share{
 
+    
     public int ShareId { get; set; }  
     
 

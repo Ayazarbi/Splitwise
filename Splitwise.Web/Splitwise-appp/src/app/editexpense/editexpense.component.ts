@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SplitWise } from '../Services/SplitWiseApi';
 
 @Component({
@@ -10,6 +10,7 @@ import { SplitWise } from '../Services/SplitWiseApi';
 export class EditexpenseComponent implements OnInit {
 
   
+  Userid:string=localStorage.getItem("id");
   Date:string="";
   title:string="";
   Groupid:string="";
@@ -27,13 +28,22 @@ export class EditexpenseComponent implements OnInit {
   Paidamount:number=0;
   Smemberemail:string="";
   Membershare:number=0;
-  model:SplitWise.ExpenseModel;
+  model:SplitWise.ExpenseModel={
+    expense:{
+      init:null,
+      toJSON:null,
+
+
+    },payers:[],shares:[],init:null,toJSON:null
+  };
   creator:SplitWise.Applicationuser;
   Id:number;
   constructor(private expenseservice:SplitWise.ExpenseClient,
               private friendservice:SplitWise.FriendsClient,
               private groupservice:SplitWise.GroupClient,
-              private route:ActivatedRoute) { }
+              private userservice:SplitWise.AccountClient,
+              private route:ActivatedRoute,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.Id=+this.route.snapshot.paramMap.get("id");
@@ -57,7 +67,13 @@ export class EditexpenseComponent implements OnInit {
 
       
 
+      
+
     });
+
+    this.userservice.getuser(localStorage.getItem("id")).subscribe(x=>{
+      this.friends.push(x.user);
+    })
   }
 
   Addmember(email:string){
@@ -69,12 +85,19 @@ export class EditexpenseComponent implements OnInit {
   Removeitem(item){
         let index=this.Members.findIndex(x=>x.id==item);
       this.Members.splice(index,1);
+      let index1=this.Payers.findIndex(x=>x.payer.id==item);
+    this.Payers.splice(index1,1);
+    let index2=this.Shares.findIndex(x=>x.userId==item);
+    this.Shares.splice(index2,1);
+
   }
 
   Addpayer(email:string,amount){
 
+    console.log(email)
     
-   var friend=this.friends.find(x=>x.email==email);
+   var friend=this.friends?.find(x=>x.email==email);
+   console.log(friend);
    var Payer:SplitWise.PayerModel={payer:friend,amount:amount,init:null,toJSON:null,payerId:friend.id}
    this.Payers.push(Payer)
    console.log(this.Payers);
@@ -110,11 +133,33 @@ export class EditexpenseComponent implements OnInit {
 
   Removeshare(item){
 
-    let index=this.model.shares.findIndex(x=>x.userId==item);
-    this.model.shares.splice(index,1);
+    let index=this.Shares.findIndex(x=>x.shareId==item);
+    this.Shares.splice(index,1);
   }
 
   Addexpense(){
+
+    if(this.Splittype=="Equally"){
+      this.Shares=[];
+      this.Members.forEach(element => {
+      
+        var share:SplitWise.Share={
+          expense:null,
+          init:null,
+          toJSON:null,
+          expenseId:0,
+          sharePercentage:100/this.Members.length,
+          shareAmount:parseInt(this.Amount)/this.Members.length,
+          shareId:0,
+          user:element,
+          userId:element.id
+        }
+  
+        this.Shares.push(share);
+
+        
+      });
+    }
 
     this.model.expense.splitType=this.Splittype;
     this.model.expense.userId=localStorage.getItem("id");
@@ -122,6 +167,7 @@ export class EditexpenseComponent implements OnInit {
     this.model.expense.groupId= parseInt(this.Groupid) ;
     this.model.expense.amount=parseInt(this.Amount);
     this.model.payers=this.Payers;
+
     this.model.shares=this.Shares;
     this.model.expense.date=this.Date.toString();
     this.model.expense.title=this.title;
@@ -129,8 +175,12 @@ export class EditexpenseComponent implements OnInit {
             this.model.shares[key].user=null;
     }
 
-    this.expenseservice.edit(this.Id,this.model).subscribe(x=>console.log(x));
+    console.log(this.model);
+
+       this.expenseservice.edit(this.Id,this.model).subscribe(x=>{console.log(x)
+        this.router.navigate(["/splitwise/myexpenses"])
+      });
 
 
 }
-}
+} 

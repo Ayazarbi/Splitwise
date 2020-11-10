@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 import { IGroup } from 'src/Models/IGroup';
 import { IGroupModel } from 'src/Models/IGroupModel';
@@ -22,13 +23,15 @@ export class AddGroupComponent implements OnInit {
 Group:SplitWise.GroupModel={expenses:[],group:{amount:0,createdby:null,creatorIdId:"aa54591c-4da7-424f-8a34-ded81b2063fc",date:"",groupId:0,title:"",init:null,toJSON:null},members:[],membersId:[],init:null,toJSON:null}
   constructor(private friendsservice:SplitWise.FriendsClient,
               private groupservice:SplitWise.GroupClient,
-              private Userservice:SplitWise.AccountClient) { }
+              private Userservice:SplitWise.AccountClient,
+              private route:Router) { }
 
   ngOnInit(): void {
 
    this.Userservice.getuser(localStorage.getItem("id")).subscribe( x=>{
     this.User=x.user
     this.Group.members.push(this.User);
+    this.Group.membersId.push(this.User.id);
    
    }
      );
@@ -64,10 +67,15 @@ this.Group.group.title=this.Title;
 this.Group.group.date=this.Date.toString();
 this.Group.group.creatorIdId=localStorage.getItem("id");
 
-this.groupservice.add(this.Group).subscribe(x=>console.log(x),
+
+
+this.groupservice.add(this.Group).subscribe(x=>{
+
+  this.route.navigate(["/splitwise/mygroups"]);
+},
 err=>console.log(err));
 
-console.log(this.Group);
+
 
   }
 

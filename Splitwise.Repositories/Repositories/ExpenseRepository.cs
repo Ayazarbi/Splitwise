@@ -194,12 +194,12 @@ public class ExpenseRepository:IExpense{
         }
         foreach (var item in expenseModel.Payers)
         {
-            var share=GetShare(item.PayerId,oldexpense.ExpenseId);
+            var share=GetShare(item.Payer.Id,oldexpense.ExpenseId);
             
             Expenseinfo expenseinfo= new Expenseinfo();
             expenseinfo.ExpenseId=oldexpense.ExpenseId;
             expenseinfo.PaidAmouunt=item.Amount;
-            expenseinfo.UserId=item.PayerId;
+            expenseinfo.UserId=item.Payer.Id;
             expenseinfo.ShareId=share.ShareId;
             expenseinfo.shareamount=share.ShareAmount;
             if((share.ShareAmount-item.Amount)>=0){

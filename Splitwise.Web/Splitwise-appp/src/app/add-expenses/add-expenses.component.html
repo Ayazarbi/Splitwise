@@ -55,6 +55,7 @@
     <div class="form-group">
         <label>Group</label>
         <select class="form-control w-25" name="Members" [(ngModel)]="Groupid" >
+            
     <option *ngFor="let item of Groups" value="{{item.groupId}}">{{item.title}}</option>
             
             

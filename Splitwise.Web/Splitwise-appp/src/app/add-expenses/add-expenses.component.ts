@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { IExpenseModel } from 'src/Models/IExpenseModel';
 import { IPayerModel } from 'src/Models/IPayerModel';
@@ -41,7 +42,8 @@ export class AddExpensesComponent implements OnInit {
   constructor(private friendservice:SplitWise.FriendsClient,
               private groupservice:SplitWise.GroupClient,
               private expenseservice:SplitWise.ExpenseClient,
-              private userservice:SplitWise.AccountClient) { }
+              private userservice:SplitWise.AccountClient,
+              private route:Router) { }
 
   ngOnInit(): void {
 
@@ -141,6 +143,7 @@ export class AddExpensesComponent implements OnInit {
           
         });
       }
+    
       this.model.shares=this.Shares;
       this.model.expense.date=this.Date.toString();
       this.model.expense.title=this.title;
@@ -150,7 +153,9 @@ export class AddExpensesComponent implements OnInit {
               this.model.shares[key].user=null;
       }
 
-      this.expenseservice.add(this.model).subscribe(x=>console.log(x));
+      this.expenseservice.add(this.model).subscribe(x=>{console.log(x);
+      this.route.navigate(["/splitwise/myexpenses"]);
+      });
 
     }
 }

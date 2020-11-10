@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MemberModel } from 'src/Models/Membermodel';
 import { SplitWise } from '../Services/SplitWiseApi';
 
@@ -18,7 +18,8 @@ export class EditgroupComponent implements OnInit {
   Group:SplitWise.GroupModel;
   constructor(private groupservice:SplitWise.GroupClient,
               private Route:ActivatedRoute,
-              private friendservice:SplitWise.FriendsClient) { }
+              private friendservice:SplitWise.FriendsClient,
+              private router:Router) { }
   Id:number;
   ngOnInit(): void {
    this.Id=+this.Route.snapshot.paramMap.get("id");
@@ -51,7 +52,10 @@ export class EditgroupComponent implements OnInit {
    
     console.log(this.Group); 
     
-       this.groupservice.edit(this.Id,this.Group).subscribe(x=>console.log(x))
+       this.groupservice.edit(this.Id,this.Group).subscribe(x=>{
+         this.router.navigate(["/splitwise/mygroups"])
+
+       })
   }
 
   Removeexpense(item){

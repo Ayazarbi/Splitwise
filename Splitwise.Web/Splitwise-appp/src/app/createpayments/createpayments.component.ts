@@ -27,7 +27,7 @@ export class CreatepaymentsComponent implements OnInit {
    var Transaction:SplitWise.TransactionModel={paidAmount:this.Amount,payeeId:this.PayeeId,payerId:localStorage.getItem("id"),init:null,toJSON:null};
     
    console.log(Transaction);
-   this.paymentservice.add(Transaction).subscribe(x=>console.log(x));
+   this.paymentservice.add(Transaction).subscribe(x=>alert("Payment Done Sucessfully"));
 
 }
 
