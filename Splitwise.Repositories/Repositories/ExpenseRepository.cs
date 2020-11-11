@@ -319,26 +319,28 @@ public class ExpenseRepository:IExpense{
         return expense;
     }
 
-    public async Task<List<BorrowLentModel>> GetExpeneseCalculations(int id){
+    public async Task<List<Settelement>> GetExpeneseCalculations(int id){
 
-        List<BorrowLentModel> borrowLentModels=new List<BorrowLentModel>();
+
+        var expenses=context.Expenses.ToList();
+
         var settlements=context.Settelements.ToList().Where(x=>x.ExpenseId==id);
         foreach (var item in settlements)
         {
-            BorrowLentModel borrowLentModel=new BorrowLentModel();
+           
+            item.Expense=expenses.FirstOrDefault(x=>x.ExpenseId==item.ExpenseId);
+
+
+
             var borrower= await UserManager.FindByIdAsync(item.BorrowerId);
             var lenter=await  UserManager.FindByIdAsync(item.LenterId);
-
-            borrowLentModel.Borrower=borrower;
-            borrowLentModel.LenterId=item.LenterId;
-            borrowLentModel.Lenter=lenter;
-            borrowLentModel.BorrowerId=item.BorrowerId;
-            borrowLentModel.Amount=item.SettelementAmount;
+            item.Borrower=borrower;
+            item.Lenter=lenter;
+          
             
-            borrowLentModels.Add(borrowLentModel);
-        }
+                 }
 
-        return borrowLentModels;
+        return settlements.ToList();
     }
 
 

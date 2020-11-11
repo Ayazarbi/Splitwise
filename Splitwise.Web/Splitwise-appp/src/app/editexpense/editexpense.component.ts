@@ -9,7 +9,7 @@ import { SplitWise } from '../Services/SplitWiseApi';
 })
 export class EditexpenseComponent implements OnInit {
 
-  
+  Settelements:SplitWise.Settelement[];
   Userid:string=localStorage.getItem("id");
   Date:string="";
   title:string="";
@@ -75,9 +75,10 @@ export class EditexpenseComponent implements OnInit {
       this.friends.push(x.user);
     })
 
-    this.groupservice.getGroupExpenses(this.Id).subscribe(x=>{
-     
-    })
+    this.expenseservice.getcalculation(this.Id).subscribe(x=>{
+     this.Settelements=x;
+     console.log(x)
+    });
   }
 
   Addmember(email:string){

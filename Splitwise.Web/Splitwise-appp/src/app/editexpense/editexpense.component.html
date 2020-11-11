@@ -18,7 +18,7 @@
         </table>
     </div>
 
-    <div style="border: solid black 1px;">
+    <div style="border: solid black 1px;" class="mt-4">
         <table  class="text-center"  align="center">
             <th>Members</th>
             <tr *ngFor="let item of Members">
@@ -57,6 +57,15 @@
         </table>
     </div>
 
+    <div style=" float: left;border: solid black 1px;" class=" mt-4 w-100">
+        <table class="text-center" align="center" width="500px">
+            <th> Group calculation</th>
+            <tr *ngFor="let item of Settelements">
+            {{item.borrower?.userName}} borrowed {{item?.settelementAmount}} from {{item.lenter?.userName}} for {{item.expense?.title}}   
+                
+            </tr>
+        </table>
+    </div>
     
     
 
@@ -70,7 +79,7 @@
 
     <div class="form-group">
         <label>Group</label>
-        <select class="form-control w-75" name="Members" >
+        <select class="form-control w-50" name="Members" >
     <option *ngFor="let item of Groups" value="{{item.groupId}}">{{item.title}}</option>
             
             
@@ -102,16 +111,16 @@
 
 <div>
     <label for="Title">Title</label>
-    <input class="form-control w-75" type="text" id="Title" name="Title" [(ngModel)]="title">
+    <input class="form-control w-50" type="text" id="Title" name="Title" [(ngModel)]="title">
 </div>
 
 <div>
     <label for="date">Date</label>
-    <input class="form-control w-75" type="date" id="date" name="date" [(ngModel)]="Date">
+    <input class="form-control w-50" type="date" id="date" name="date" [(ngModel)]="Date">
 </div>
 <div class="form-group">
     <label  for="amount" >Amount</label>
-    <input class="form-control w-75"type="number" id="amount" name="amount" [(ngModel)]="Amount">
+    <input class="form-control w-50"type="number" id="amount" name="amount" [(ngModel)]="Amount">
 
 </div>
 <br>

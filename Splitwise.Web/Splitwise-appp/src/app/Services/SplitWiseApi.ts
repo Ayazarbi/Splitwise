@@ -578,7 +578,7 @@ export class ExpenseClient {
         return _observableOf<Expense>(<any>null);
     }
 
-    getcalculation(id: number): Observable<BorrowLentModel[]> {
+    getcalculation(id: number): Observable<Settelement[]> {
         let url_ = this.baseUrl + "/Expense/Calculation/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -600,14 +600,14 @@ export class ExpenseClient {
                 try {
                     return this.processGetcalculation(<any>response_);
                 } catch (e) {
-                    return <Observable<BorrowLentModel[]>><any>_observableThrow(e);
+                    return <Observable<Settelement[]>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<BorrowLentModel[]>><any>_observableThrow(response_);
+                return <Observable<Settelement[]>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetcalculation(response: HttpResponseBase): Observable<BorrowLentModel[]> {
+    protected processGetcalculation(response: HttpResponseBase): Observable<Settelement[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -621,7 +621,7 @@ export class ExpenseClient {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(BorrowLentModel.fromJS(item));
+                    result200!.push(Settelement.fromJS(item));
             }
             return _observableOf(result200);
             }));
@@ -630,7 +630,7 @@ export class ExpenseClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<BorrowLentModel[]>(<any>null);
+        return _observableOf<Settelement[]>(<any>null);
     }
 
     test(): Observable<FileResponse> {
