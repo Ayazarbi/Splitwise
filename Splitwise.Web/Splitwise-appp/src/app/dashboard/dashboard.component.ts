@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { combineAll } from 'rxjs/operators';
 import { IUserModel } from 'src/Models/IUserModel';
 import { SplitWise } from '../Services/SplitWiseApi';
 
@@ -36,8 +37,20 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     
     this.service.getuser(localStorage.getItem("id")).subscribe(x=>{
+      x.owesfrom.forEach(element => {
+
+        x.user.balacnce+=element.amount;
+        
+      });
+
+      x.owsto.forEach(element => {
+        
+        x.user.balacnce-=element.amount;
+      });
+
       this.model=x;
       console.log(x);
+
 
     },
 

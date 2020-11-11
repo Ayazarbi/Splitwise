@@ -1181,33 +1181,36 @@ export class GroupClient {
         return _observableOf<Expense[]>(<any>null);
     }
 
-    getcalculations(id: number): Observable<BorrowLentModel> {
-        let url_ = this.baseUrl + "/Group/{id}/calculations";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
-        url_ = url_.replace(/[?&]$/, "");
+    getcalculations(id: number) {
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Accept": "application/json"
-            })
-        };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetcalculations(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetcalculations(<any>response_);
-                } catch (e) {
-                    return <Observable<BorrowLentModel>><any>_observableThrow(e);
-                }
-            } else
-                return <Observable<BorrowLentModel>><any>_observableThrow(response_);
-        }));
+        return this.http.get<Settelement[]>(this.baseUrl+"/Group/"+id+"/calculations");
+        // let url_ = this.baseUrl + "/Group/{id}/calculations";
+        // if (id === undefined || id === null)
+        //     throw new Error("The parameter 'id' must be defined.");
+        // url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        // url_ = url_.replace(/[?&]$/, "");
+
+        // let options_ : any = {
+        //     observe: "response",
+        //     responseType: "blob",
+        //     headers: new HttpHeaders({
+        //         "Accept": "application/json"
+        //     })
+        // };
+
+        // return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        //     return this.processGetcalculations(response_);
+        // })).pipe(_observableCatch((response_: any) => {
+        //     if (response_ instanceof HttpResponseBase) {
+        //         try {
+        //             return this.processGetcalculations(<any>response_);
+        //         } catch (e) {
+        //             return <Observable<BorrowLentModel>><any>_observableThrow(e);
+        //         }
+        //     } else
+        //         return <Observable<BorrowLentModel>><any>_observableThrow(response_);
+        // }));
     }
 
     protected processGetcalculations(response: HttpResponseBase): Observable<BorrowLentModel> {

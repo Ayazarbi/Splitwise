@@ -14,9 +14,9 @@
      </div>
    
     <div class="box" id="Expenses">
-        <h6 class="bg-dark">Myexpense</h6>
+        <h6 class="bg-dark">Myexpense </h6>
             <ol type="1">
-            <li class="text-dark p-1" *ngFor="let item of model?.expenses"><a class="">{{item.title}}</a></li>
+            <li class="text-dark p-1" *ngFor="let item of model?.expenses"><a [routerLink]="['/splitwise/expenseinfo/',item.expenseId]" routerLinkActive="router-link-active"  class="">{{item?.title}}</a></li>
              </ol>
         
        
@@ -26,7 +26,7 @@
     <div class="box" id="groups">
         <h6 class="bg-dark">MyGroups</h6>
         <ol type="1">
-            <li class="text-dark p-1" *ngFor="let item of model?.groups"><a class="">{{item.title}}</a></li>
+            <li class="text-dark p-1" *ngFor="let item of model?.groups"><a [routerLink]="['/splitwise/groupinfo/',item.groupId]" routerLinkActive="router-link-active"  class="">{{item?.title}}</a></li>
          </ol>
         
         
@@ -48,7 +48,7 @@
        
 
         <ol type="1">
-            <li class="text-dark p-1" *ngFor="let item of model?.transactions"><a class="">{{item.payer.email}} paid {{item.paidAmount}} to {{item.payee.email}}</a></li>
+            <li class="text-dark p-1" *ngFor="let item of model?.transactions"><a class="">{{item.payer?.email}} paid {{item?.paidAmount}} to {{item.payee?.email}}</a></li>
              </ol>
 
         
@@ -61,14 +61,14 @@
         <h6 class="bg-dark">Owes To</h6>
        
 <ol type="1">
-            <li class="text-dark p-1" *ngFor="let item of model?.owsto"><a class="">{{item.payer.userName}} ows {{item.amount}} </a></li>
+            <li class="text-dark p-1" *ngFor="let item of model?.owsto"><a class="">{{item.payer?.userName}} ows {{item?.amount}} </a></li>
              </ol>
     </div>
     <div class="box"> 
         <h6 class="bg-dark">Owes from</h6>
 
         <ol type="1">
-            <li class="text-dark p-1" *ngFor="let item of model?.owesfrom"><a class="">{{item.payer.userName}} Owes You  {{item.amount}} Rs. </a></li>
+            <li class="text-dark p-1" *ngFor="let item of model?.owesfrom"><a class="">{{item.payer?.userName}} Owes You  {{item?.amount}} Rs. </a></li>
              </ol>
 
     </div>
@@ -81,13 +81,19 @@
 
 
 
-<div class="float-right bg-light text-center" style="height: 4in;width: 4in;margin-right: 1in;margin-top: 1in;">
+<div class="float-right bg-light text-center" style="height: 4in;width: 4in;margin-right: 1in;margin-top: .8in;">
   
+
+    <div>
+        <a class="btn btn-outline-dark " [routerLink]="['/splitwise/addexpense']" routerLinkActive="router-link-active" >Add Expense</a>&nbsp;
+        <a class="btn btn-outline-dark " [routerLink]="['/splitwise/addgroup']" routerLinkActive="router-link-active" >Add Group</a>
+    </div>
+    <br>
     <h6>Add Friend</h6>
     <div class="mt-4">
     
     <form>
-        <select class="w-50" [(ngModel)]="Friendemail" name="Friendemail"><option *ngFor="let item of Users" value="{{item?.id}}">{{item?.email}}</option></select>&nbsp;&nbsp;
+        <select class="w-50 " [(ngModel)]="Friendemail" name="Friendemail"><option *ngFor="let item of Users" value="{{item?.id}}">{{item?.email}}</option></select>&nbsp;&nbsp;
         <input type="submit"  (click)="Addfriend(Friendemail)" class="bg-dark text-white" value="Add friend">
         
     </form>

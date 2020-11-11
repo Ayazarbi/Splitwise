@@ -10,6 +10,7 @@ import { SplitWise } from '../Services/SplitWiseApi';
 })
 export class EditgroupComponent implements OnInit {
 
+  Settelements:SplitWise.Settelement[];
   Members:MemberModel[]=[];
   MemberId:string="";
   MemebersId:string[]=[];
@@ -29,6 +30,11 @@ export class EditgroupComponent implements OnInit {
       this.Group=x;
   });
 
+  this.groupservice.getcalculations(this.Id).subscribe(x=>{
+    this.Settelements=x;
+    console.log(x);
+    
+  })
   
   }
 

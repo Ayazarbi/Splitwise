@@ -115,10 +115,12 @@ public class GroupRepository:IGroup{
             context.GroupMembers.RemoveRange(groupMember);
 
             var groupExpenses=context.GroupsofExpenses.ToList().Where(x=>x.GroupId==id);
-            foreach (var item in groupExpenses)
-            {
-                expenserepo.DeleteExpense(item.ExpenseId);
-            }
+            context.GroupsofExpenses.RemoveRange(groupExpenses);
+
+            // foreach (var item in groupExpenses)
+            // {
+            //     expenserepo.DeleteExpense(item.ExpenseId);
+            // }
             
             foreach (var item in groupModel.MembersId.ToList()){
 
@@ -185,29 +187,37 @@ public class GroupRepository:IGroup{
         return groupExpense;
     }
 
-    public async Task<List<BorrowLentModel>> GetGroupCalculation(int id){
+    public async Task<List<Settelement>> GetGroupCalculation(int id){
 
-        List<BorrowLentModel> calculations=new List<BorrowLentModel>(); 
-        var settlemetns=context.Settelements.ToList().Where(x=>x.GroupId==id);
+       
+       var expenses=context.Expenses.ToList();
+    var settlemetns=context.Settelements.ToList().Where(x=>x.GroupId==id);
+
         foreach (var item in settlemetns)
         {
-            BorrowLentModel borrowLentModel=new BorrowLentModel(){
-                Amount=item.SettelementAmount,
-                BorrowerId=item.BorrowerId,
-                 LenterId=item.LenterId,
-            };
+                    
+            item.Expense=expenses.FirstOrDefault(x=>x.ExpenseId==item.ExpenseId);
 
             var borrower=await UserManager.FindByIdAsync(item.BorrowerId);
             var lenter=await UserManager.FindByIdAsync(item.LenterId);
 
-            borrowLentModel.Borrower=borrower;
-            borrowLentModel.Lenter=lenter;
-
-
+            item.Borrower=borrower;
+            item.Lenter=lenter;
 
         }
+        // foreach (var item in settlemetns)
+        // {
+        //     BorrowLentModel borrowLentModel=new BorrowLentModel(){
+        //         Amount=item.SettelementAmount,
+        //         BorrowerId=item.BorrowerId,
+        //          LenterId=item.LenterId,
+        //     };
 
-        return calculations;
+
+
+        // }
+
+        return settlemetns.ToList();
         
     }
 

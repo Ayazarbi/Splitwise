@@ -13,7 +13,7 @@ export class EditexpenseComponent implements OnInit {
   Userid:string=localStorage.getItem("id");
   Date:string="";
   title:string="";
-  Groupid:string="";
+  Groupid:number=0;
   Amount:string;"";
   Splittype:string="";
   Shares:SplitWise.Share[]=[];
@@ -58,7 +58,7 @@ export class EditexpenseComponent implements OnInit {
       this.Splittype=x.expense.splitType;
       this.Shares=x.shares;
       this.Payers=x.payers;
-      this.Groupid=x.expense.groupId.toString();
+      this.Groupid=x.expense.groupId;
       this.creator=x.expense.user;
       for (var key in x.payers) {
         
@@ -73,6 +73,10 @@ export class EditexpenseComponent implements OnInit {
 
     this.userservice.getuser(localStorage.getItem("id")).subscribe(x=>{
       this.friends.push(x.user);
+    })
+
+    this.groupservice.getGroupExpenses(this.Id).subscribe(x=>{
+     
     })
   }
 
@@ -164,7 +168,7 @@ export class EditexpenseComponent implements OnInit {
     this.model.expense.splitType=this.Splittype;
     this.model.expense.userId=localStorage.getItem("id");
     this.model.expense.group=null;
-    this.model.expense.groupId= parseInt(this.Groupid) ;
+    this.model.expense.groupId= this.Groupid ;
     this.model.expense.amount=parseInt(this.Amount);
     this.model.payers=this.Payers;
 

@@ -24,15 +24,15 @@ const routes: Routes = [
   {path:"splitwise",component:ContainerComponent,canActivate:[Authguard],children:[
 
     {path:"dashboard",component:DashboardComponent,canActivateChild:[Authguard]},
-    {path:"myexpenses",component:MyExpensesComponent},
-    {path:"mygroups",component:MyGroupsComponent},
-    {path:"groupinfo/:id",component:EditgroupComponent},
-    {path:"expenseinfo/:id",component:EditexpenseComponent},
-    {path:"addgroup",component:AddGroupComponent},
-    {path:"addexpense",component:AddExpensesComponent},
-    {path:"activities/:id",component:ActivitiesComponent},
-    {path:"pay",component:CreatepaymentsComponent,},
-    {path:"activity",component:ActivitiesComponent}
+    {path:"myexpenses",component:MyExpensesComponent,canActivateChild:[Authguard]},
+    {path:"mygroups",component:MyGroupsComponent,canActivateChild:[Authguard]},
+    {path:"groupinfo/:id",component:EditgroupComponent,canActivateChild:[Authguard]},
+    {path:"expenseinfo/:id",component:EditexpenseComponent,canActivateChild:[Authguard]},
+    {path:"addgroup",component:AddGroupComponent,canActivateChild:[Authguard]},
+    {path:"addexpense",component:AddExpensesComponent,canActivateChild:[Authguard]},
+    {path:"activities/:id",component:ActivitiesComponent,canActivateChild:[Authguard]},
+    {path:"pay",component:CreatepaymentsComponent,canActivateChild:[Authguard]},
+    {path:"activity",component:ActivitiesComponent,canActivateChild:[Authguard]}
   ]}
 
   

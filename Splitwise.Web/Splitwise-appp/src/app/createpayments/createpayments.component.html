@@ -6,15 +6,17 @@
     <form #myform="ngForm" (ngSubmit)="Payment()">
       <div class="form-group">
         <label for="payto">Payto</label>
-       <select id="payto" class="form-control w-50" [(ngModel)]="PayeeId" name="Payee">
+       <select id="payto" class="form-control w-50" [(ngModel)]="PayeeId" name="Payee" [class.border-danger]="PayeeId==''">
            <option *ngFor="let item of friends" value="{{item.id}}">{{item?.email}}</option>
        </select>
       </div>
+      <span class="text-danger" *ngIf="PayeeId==''">Payee must be selected</span>
 
       <div class="form-group">
         <label for="Passoword">Amount</label>
-        <input class="form-control" type="number" name="Password" id="Password" [(ngModel)]="Amount">
+        <input class="form-control" type="number" name="Password" id="Password" [(ngModel)]="Amount" #amount="ngModel" [class.border-danger]="amount.touched&&amount.invalid" required>
       </div>
+      <span class="text-danger" *ngIf="amount.invalid && amount.touched">Amount can not  be empty</span>
 
      
 
@@ -22,7 +24,7 @@
 
       <div>
 
-        <input class="btn btn-primary bg-dark" type="submit" value="PAy"name >
+        <input class="btn btn-primary bg-dark" type="submit" value="Pay" [disabled]="myform.invalid || PayeeId==''" >
       </div>
       <div class="alert alert-danger text-danger h-25" *ngIf="error">
         <h6>{{error}}</h6>

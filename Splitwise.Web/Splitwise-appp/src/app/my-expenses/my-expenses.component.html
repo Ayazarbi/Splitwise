@@ -8,8 +8,8 @@
       <h6>{{item.amount}}</h6>
     </div>
     <div class="card-footer text-center ">
-        <a class="btn btn-info" [routerLink]="['/splitwie/',item.expenseId]" routerLinkActive="router-link-active" >Edit</a>
-        &nbsp;&nbsp;<a class="btn btn-danger">Delete</a>
+        <a class="btn btn-info" [routerLink]="['/splitwise/expenseinfo',item.expenseId]" routerLinkActive="router-link-active" >Edit</a>
+        &nbsp;&nbsp;<a class="btn btn-danger" (click)="Deleteexpense(item.expenseId)">Delete</a>
     </div>
   </div>
 </div>

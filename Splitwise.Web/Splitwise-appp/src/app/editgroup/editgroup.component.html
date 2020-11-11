@@ -88,6 +88,16 @@
         </table>
     </div>
 
+    <div style=" float: left;" class="ml-5 mt-5">
+        <table class="text-center" align="center" border="1">
+            <th> Group calculation</th>
+            <tr *ngFor="let item of Settelements">
+            {{item.borrower.userName}} borrowed {{item.settelementAmount}} from {{item.lenter.userName}} for {{item.expense.title}}   
+                
+            </tr>
+        </table>
+    </div>
+
 </div>
 </div>
 

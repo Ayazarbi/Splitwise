@@ -9,7 +9,7 @@ import { SplitWise } from '../Services/SplitWiseApi';
 export class CreatepaymentsComponent implements OnInit {
 
   PayeeId:string="";
-  Amount:number=0;
+  Amount:number;
   error:string;
   
   friends:SplitWise.Applicationuser[];

@@ -26,7 +26,7 @@
             <th>Amount</th>
             <tr *ngFor="let item of Shares">
                
-                <td> {{item?.user.email}}</td>
+                <td> {{item.user?.email}}</td>
                 <td>{{item?.sharePercentage}}</td>
                 <td>{{item?.shareAmount}}</td>
                 <td><button class="text-danger bg-white border-0" (click)="Removeshare(item)">X</button></td>

@@ -173,6 +173,7 @@ public class ExpenseRepository:IExpense{
         oldexpense.GroupId=expenseModel.Expense.GroupId;
         oldexpense.Title=expenseModel.Expense.Title;
         oldexpense.UserId=expenseModel.Expense.UserId;
+       
         var expense=context.Expenses.Attach(oldexpense);
         expense.State=Microsoft.EntityFrameworkCore.EntityState.Modified;
         context.SaveChanges();

@@ -15,7 +15,7 @@ public interface IGroup{
 
     public IEnumerable<Expense> GetGroupExpenses(int id);
 
-    public Task<List<BorrowLentModel>> GetGroupCalculation(int id);
+    public Task<List<Settelement>> GetGroupCalculation(int id);
 
     public IEnumerable<Group> getallgroups();
 

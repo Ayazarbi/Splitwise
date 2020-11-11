@@ -15,19 +15,29 @@ export class MyExpensesComponent implements OnInit {
   //   1,group:null,groupId:1,splitType:"equally",title:"title",user:null,userId:"11"},
  
   // ];
-  constructor(private expenseservice:SplitWise.UserClient) {
+  constructor(private userexpenseservice:SplitWise.UserClient,
+              private expenseservice:SplitWise.ExpenseClient) {
 
    }
 
   ngOnInit(): void {
-    this.expenseservice.getUserExpenses(localStorage.getItem("id")).subscribe(x=>{
+    this.userexpenseservice.getUserExpenses(localStorage.getItem("id")).subscribe(x=>{
       this.expenses=x;
     },
     err=>{
       console.log(err)
     })
+    
+
   
-  
+  }
+
+
+  Deleteexpense(id){
+
+    this.expenseservice.delete(id).subscribe(x=>{
+      alert("Expense deleted Successfully");
+    })
   }
 
 }
