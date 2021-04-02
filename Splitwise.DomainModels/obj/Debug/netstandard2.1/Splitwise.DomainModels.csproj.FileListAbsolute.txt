@@ -16,3 +16,12 @@
 /home/kali/Desktop/Splitwise/Splitwise.DomainModels/obj/Debug/netstandard2.1/Splitwise.DomainModels.csproj.CoreCompileInputs.cache
 /home/kali/Desktop/Splitwise/Splitwise.DomainModels/obj/Debug/netstandard2.1/Splitwise.DomainModels.dll
 /home/kali/Desktop/Splitwise/Splitwise.DomainModels/obj/Debug/netstandard2.1/Splitwise.DomainModels.pdb
+C:\Users\Kali\Desktop\Splitwise\Splitwise.DomainModels\bin\Debug\netstandard2.1\Splitwise.DomainModels.deps.json
+C:\Users\Kali\Desktop\Splitwise\Splitwise.DomainModels\bin\Debug\netstandard2.1\Splitwise.DomainModels.dll
+C:\Users\Kali\Desktop\Splitwise\Splitwise.DomainModels\bin\Debug\netstandard2.1\Splitwise.DomainModels.pdb
+C:\Users\Kali\Desktop\Splitwise\Splitwise.DomainModels\obj\Debug\netstandard2.1\Splitwise.DomainModels.csprojAssemblyReference.cache
+C:\Users\Kali\Desktop\Splitwise\Splitwise.DomainModels\obj\Debug\netstandard2.1\Splitwise.DomainModels.AssemblyInfoInputs.cache
+C:\Users\Kali\Desktop\Splitwise\Splitwise.DomainModels\obj\Debug\netstandard2.1\Splitwise.DomainModels.AssemblyInfo.cs
+C:\Users\Kali\Desktop\Splitwise\Splitwise.DomainModels\obj\Debug\netstandard2.1\Splitwise.DomainModels.csproj.CoreCompileInputs.cache
+C:\Users\Kali\Desktop\Splitwise\Splitwise.DomainModels\obj\Debug\netstandard2.1\Splitwise.DomainModels.dll
+C:\Users\Kali\Desktop\Splitwise\Splitwise.DomainModels\obj\Debug\netstandard2.1\Splitwise.DomainModels.pdb

@@ -65,8 +65,12 @@ public class FriendRepository:IFriend{
     public async Task<Friend> Addfriend(Friend friend)
     {
        var result= await  context.Friends.AddAsync(friend);
+        
+        
        context.SaveChanges();
-       var user=await UserManager.FindByIdAsync(friend.FrndId);
+       
+
+        var user=await UserManager.FindByIdAsync(friend.FrndId);
        var activity=new Activity();
        activity.Activitydata="You added"+user.UserName+"In your friendlist";
        activity.Date=DateTime.Now.ToString();
@@ -74,6 +78,24 @@ public class FriendRepository:IFriend{
 
        context.Activities.Add(activity);
        context.SaveChanges();
-       return friend;
+
+        var userid = friend.UserId;
+        var frndId = friend.FrndId;
+
+        friend.UserId = frndId;
+        friend.FrndId = userid;
+        friend.FriendId = 0;
+        await context.Friends.AddAsync(friend);
+        context.SaveChanges();
+
+        var activity2 = new Activity();
+        var user2 = await UserManager.FindByIdAsync(friend.FrndId);
+        activity.Activitydata = "You added" + user2.UserName + "In your friendlist";
+        activity.Date = DateTime.Now.ToString();
+        activity.UserId = friend.UserId;
+
+        context.Activities.Add(activity2);
+        context.SaveChanges();
+        return friend;
     }
 }

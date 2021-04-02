@@ -40,7 +40,7 @@ namespace Splitwise.Web
 
    
 
-            services.AddDbContextPool<AppdbContext>(options=>options.UseMySql(Configuration.GetConnectionString("Splitwise"),
+            services.AddDbContextPool<AppdbContext>(options=>options.UseNpgsql(Configuration.GetConnectionString("Splitwise"),
             b=>b.MigrationsAssembly("Splitwise.DomainModels")));
             services.AddIdentity<Applicationuser,IdentityRole>()
                 .AddEntityFrameworkStores<AppdbContext>();            

@@ -26,3 +26,17 @@
 /home/kali/Desktop/Splitwise/Splitwise.Repositories/obj/Debug/netstandard2.1/Splitwise.Repositories.csproj.CopyComplete
 /home/kali/Desktop/Splitwise/Splitwise.Repositories/obj/Debug/netstandard2.1/Splitwise.Repositories.dll
 /home/kali/Desktop/Splitwise/Splitwise.Repositories/obj/Debug/netstandard2.1/Splitwise.Repositories.pdb
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\bin\Debug\netstandard2.1\Splitwise.Repositories.deps.json
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\bin\Debug\netstandard2.1\Splitwise.Repositories.dll
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\bin\Debug\netstandard2.1\Splitwise.Repositories.pdb
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\bin\Debug\netstandard2.1\Splitwise.DomainModels.dll
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\bin\Debug\netstandard2.1\Splitwise.Util.dll
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\bin\Debug\netstandard2.1\Splitwise.DomainModels.pdb
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\bin\Debug\netstandard2.1\Splitwise.Util.pdb
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\obj\Debug\netstandard2.1\Splitwise.Repositories.csprojAssemblyReference.cache
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\obj\Debug\netstandard2.1\Splitwise.Repositories.AssemblyInfoInputs.cache
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\obj\Debug\netstandard2.1\Splitwise.Repositories.AssemblyInfo.cs
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\obj\Debug\netstandard2.1\Splitwise.Repositories.csproj.CoreCompileInputs.cache
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\obj\Debug\netstandard2.1\Splitwise.Repositories.csproj.CopyComplete
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\obj\Debug\netstandard2.1\Splitwise.Repositories.dll
+C:\Users\Kali\Desktop\Splitwise\Splitwise.Repositories\obj\Debug\netstandard2.1\Splitwise.Repositories.pdb

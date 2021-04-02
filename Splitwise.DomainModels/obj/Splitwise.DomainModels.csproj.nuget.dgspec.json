@@ -1,29 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {}
+    "C:\\Users\\Kali\\Desktop\\Splitwise\\Splitwise.DomainModels\\Splitwise.DomainModels.csproj": {}
   },
   "projects": {
-    "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj": {
+    "C:\\Users\\Kali\\Desktop\\Splitwise\\Splitwise.DomainModels\\Splitwise.DomainModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
+        "projectUniqueName": "C:\\Users\\Kali\\Desktop\\Splitwise\\Splitwise.DomainModels\\Splitwise.DomainModels.csproj",
         "projectName": "Splitwise.DomainModels",
-        "projectPath": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/Splitwise.DomainModels.csproj",
-        "packagesPath": "/home/kali/.nuget/packages/",
-        "outputPath": "/home/kali/Desktop/Splitwise/Splitwise.DomainModels/obj/",
+        "projectPath": "C:\\Users\\Kali\\Desktop\\Splitwise\\Splitwise.DomainModels\\Splitwise.DomainModels.csproj",
+        "packagesPath": "C:\\Users\\Kali\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kali\\Desktop\\Splitwise\\Splitwise.DomainModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/kali/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Kali\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
             "projectReferences": {}
           }
         },
@@ -35,6 +38,7 @@
       },
       "frameworks": {
         "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
           "dependencies": {
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
@@ -53,6 +57,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[3.1.9, )"
             },
@@ -76,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

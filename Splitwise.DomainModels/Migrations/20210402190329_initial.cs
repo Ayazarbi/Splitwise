@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Splitwise.DomainModels.Migrations
 {
@@ -53,7 +53,7 @@ namespace Splitwise.DomainModels.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -74,7 +74,7 @@ namespace Splitwise.DomainModels.Migrations
                 columns: table => new
                 {
                     ActivityId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<string>(nullable: true),
                     Activitydata = table.Column<string>(nullable: true),
                     Date = table.Column<string>(nullable: true)
@@ -95,7 +95,7 @@ namespace Splitwise.DomainModels.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -180,7 +180,7 @@ namespace Splitwise.DomainModels.Migrations
                 columns: table => new
                 {
                     FriendId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<string>(nullable: true),
                     FrndId = table.Column<string>(nullable: true)
                 },
@@ -205,19 +205,46 @@ namespace Splitwise.DomainModels.Migrations
                 name: "Groups",
                 columns: table => new
                 {
-                    groupId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    title = table.Column<string>(nullable: true),
+                    GroupId = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(nullable: true),
                     CreatorIdId = table.Column<string>(nullable: true),
                     Date = table.Column<string>(nullable: true),
                     Amount = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Groups", x => x.groupId);
+                    table.PrimaryKey("PK_Groups", x => x.GroupId);
                     table.ForeignKey(
                         name: "FK_Groups_AspNetUsers_CreatorIdId",
                         column: x => x.CreatorIdId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    TrasactionId = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PayerId = table.Column<string>(nullable: true),
+                    PayeeId = table.Column<string>(nullable: true),
+                    PaidAmount = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.TrasactionId);
+                    table.ForeignKey(
+                        name: "FK_Payments_AspNetUsers_PayeeId",
+                        column: x => x.PayeeId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Payments_AspNetUsers_PayerId",
+                        column: x => x.PayerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -228,8 +255,8 @@ namespace Splitwise.DomainModels.Migrations
                 columns: table => new
                 {
                     ExpenseId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    GroupId = table.Column<int>(nullable: false),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    GroupId = table.Column<int>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     SplitType = table.Column<string>(nullable: true),
                     Amount = table.Column<double>(nullable: false),
@@ -243,8 +270,8 @@ namespace Splitwise.DomainModels.Migrations
                         name: "FK_Expenses_Groups_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Groups",
-                        principalColumn: "groupId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "GroupId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Expenses_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -258,7 +285,7 @@ namespace Splitwise.DomainModels.Migrations
                 columns: table => new
                 {
                     GroupMembersId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     GroupId = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
@@ -269,7 +296,7 @@ namespace Splitwise.DomainModels.Migrations
                         name: "FK_GroupMembers_Groups_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Groups",
-                        principalColumn: "groupId",
+                        principalColumn: "GroupId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_GroupMembers_AspNetUsers_UserId",
@@ -284,8 +311,8 @@ namespace Splitwise.DomainModels.Migrations
                 columns: table => new
                 {
                     GroupExpenseId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    GroupId = table.Column<int>(nullable: false),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    GroupId = table.Column<int>(nullable: true),
                     ExpenseId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -301,8 +328,8 @@ namespace Splitwise.DomainModels.Migrations
                         name: "FK_GroupsofExpenses_Groups_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Groups",
-                        principalColumn: "groupId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "GroupId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -310,12 +337,12 @@ namespace Splitwise.DomainModels.Migrations
                 columns: table => new
                 {
                     SettelementId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ExpenseId = table.Column<int>(nullable: false),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ExpenseId = table.Column<int>(nullable: true),
                     SettelementAmount = table.Column<double>(nullable: false),
                     BorrowerId = table.Column<string>(nullable: true),
                     LenterId = table.Column<string>(nullable: true),
-                    GroupId = table.Column<int>(nullable: false)
+                    GroupId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -331,13 +358,13 @@ namespace Splitwise.DomainModels.Migrations
                         column: x => x.ExpenseId,
                         principalTable: "Expenses",
                         principalColumn: "ExpenseId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Settelements_Groups_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Groups",
-                        principalColumn: "groupId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "GroupId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Settelements_AspNetUsers_LenterId",
                         column: x => x.LenterId,
@@ -351,7 +378,7 @@ namespace Splitwise.DomainModels.Migrations
                 columns: table => new
                 {
                     ShareId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ExpenseId = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
                     SharePercentage = table.Column<double>(nullable: false),
@@ -375,45 +402,11 @@ namespace Splitwise.DomainModels.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Payments",
-                columns: table => new
-                {
-                    TrasactionId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PayerId = table.Column<string>(nullable: true),
-                    PayeeId = table.Column<string>(nullable: true),
-                    PaidAmount = table.Column<double>(nullable: false),
-                    SettelementId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Payments", x => x.TrasactionId);
-                    table.ForeignKey(
-                        name: "FK_Payments_AspNetUsers_PayeeId",
-                        column: x => x.PayeeId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Payments_AspNetUsers_PayerId",
-                        column: x => x.PayerId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Payments_Settelements_SettelementId",
-                        column: x => x.SettelementId,
-                        principalTable: "Settelements",
-                        principalColumn: "SettelementId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Expensesinfo",
                 columns: table => new
                 {
                     ExpenseinfoId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ExpenseId = table.Column<int>(nullable: false),
                     PaidAmouunt = table.Column<double>(nullable: false),
                     BorrowedAmout = table.Column<double>(nullable: false),
@@ -558,11 +551,6 @@ namespace Splitwise.DomainModels.Migrations
                 column: "PayerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_SettelementId",
-                table: "Payments",
-                column: "SettelementId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Settelements_BorrowerId",
                 table: "Settelements",
                 column: "BorrowerId");
@@ -629,13 +617,13 @@ namespace Splitwise.DomainModels.Migrations
                 name: "Payments");
 
             migrationBuilder.DropTable(
+                name: "Settelements");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Shareinfo");
-
-            migrationBuilder.DropTable(
-                name: "Settelements");
 
             migrationBuilder.DropTable(
                 name: "Expenses");

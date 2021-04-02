@@ -36,20 +36,17 @@ public class PaymentRepository:ITransaction{
     {
     
         var Settelements=context.Settelements.Where(x=>x.BorrowerId==transaction.PayerId&&x.LenterId==transaction.PayeeId);
-
+        var paidAmount = transaction.PaidAmount;
             foreach (var item in Settelements)
             {
-                
-                
-                
                 if(transaction.PaidAmount<=0){
 
                     break;
                 }
                 else{
 
-                    var result=item.SettelementAmount-transaction.PaidAmount;
-                    transaction.PaidAmount-=item.SettelementAmount;
+                    var result=item.SettelementAmount-paidAmount;
+                    paidAmount-=item.SettelementAmount;
                     if(result>0){
                         item.SettelementAmount=result;
 
@@ -65,13 +62,13 @@ public class PaymentRepository:ITransaction{
 
                 }
 
-                if(transaction.PaidAmount>0){
+                if(paidAmount>0){
 
                     Settelement settelement=new Settelement(){
                         BorrowerId=transaction.PayeeId,
                         LenterId=transaction.PayerId,
                         ExpenseId=null,
-                        SettelementAmount=transaction.PaidAmount,
+                        SettelementAmount=paidAmount,
                         GroupId=null,
                     };
                     context.Settelements.Add(settelement);

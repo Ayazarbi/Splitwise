@@ -59,7 +59,7 @@ public class AccountRepository:IAccount{
         userModel.Transactions=await transactionrepo.GetUsertransactionsAsync(id);
         
 
-        var settelements=context.Settelements.ToList().Where(x=>x.BorrowerId==id || x.LenterId==id);
+        var settelements=context.Settelements.ToList().Where(x=>(x.BorrowerId==id || x.LenterId==id) && x.SettelementAmount > 0);
 
         var OWESTO=(from item in settelements
                     where item.BorrowerId==id
@@ -86,43 +86,9 @@ public class AccountRepository:IAccount{
                     }).ToList();
 
 
-        if(OWESTO.Count==0){
+        
 
-            foreach (var item in OWESFROM)
-            {
-                var user=await userManager.FindByIdAsync(item.name);
-                
-                PayerModel pm=new PayerModel(){
-                    Amount=item.amount,
-                    Payer=user,
-                    PayerId=user.Id,
-                };
-
-                OF.Add(pm);
-                
-            }
-
-        }
-        if(OWESFROM.Count==0){
-
-            foreach (var item in OWESTO)
-            {
-                var user=await userManager.FindByIdAsync(item.name);
-                
-                PayerModel pm=new PayerModel(){
-                    Amount=item.amount,
-                    Payer=user,
-                    PayerId=user.Id,
-                };
-
-                OT.Add(pm);
-                
-            }
-
-
-        }
-
-        foreach (var item in OWESTO)
+        foreach (var item in OWESTO.ToList())
         {
             var user=await userManager.FindByIdAsync(item.name);
             PayerModel pmm=new PayerModel(){
@@ -130,7 +96,7 @@ public class AccountRepository:IAccount{
                 Payer=user,
                 PayerId=user.Id
             };
-            foreach (var subitem in OWESFROM)
+            foreach (var subitem in OWESFROM.ToList())
             {
                 if(item.name==subitem.name){
                     var result=item.amount-subitem.amount;
@@ -138,12 +104,21 @@ public class AccountRepository:IAccount{
                         
                         pmm.Amount=result;
                         OT.Add(pmm);
+                        OWESTO.Remove(item);
+                        OWESFROM.Remove(subitem);
     
                     }
                     else if(result<0){
 
                         pmm.Amount=result*-1;
                         OF.Add(pmm);
+                        OWESTO.Remove(item);
+                        OWESFROM.Remove(subitem);
+                    }
+                    else if(result == 0)
+                    {
+                        OWESTO.Remove(item);
+                        OWESFROM.Remove(subitem);
                     }
                     else{
                         continue;
@@ -151,14 +126,86 @@ public class AccountRepository:IAccount{
 
 
                 }
+               
             }
         }
-                
-        
-      
 
-       
-      userModel.Owesfrom=OF.ToList();
+        if (OWESTO.Count == 0)
+        {
+
+            foreach (var item in OWESFROM.ToList())
+            {
+                var user = await userManager.FindByIdAsync(item.name);
+
+                PayerModel pm = new PayerModel()
+                {
+                    Amount = item.amount,
+                    Payer = user,
+                    PayerId = user.Id,
+                };
+
+                OF.Add(pm);
+
+            }
+
+        }
+        if (OWESFROM.Count == 0)
+        {
+
+            foreach (var item in OWESTO.ToList())
+            {
+                var user = await userManager.FindByIdAsync(item.name);
+
+                PayerModel pm = new PayerModel()
+                {
+                    Amount = item.amount,
+                    Payer = user,
+                    PayerId = user.Id,
+                };
+
+                OT.Add(pm);
+
+            }
+
+
+        }
+
+        if (OWESFROM.ToList().Count() > 0)
+        {
+            foreach (var item in OWESTO)
+            {
+                var user = await userManager.FindByIdAsync(item.name);
+                PayerModel pmm = new PayerModel()
+                {
+                    Amount = item.amount,
+                    Payer = user,
+                    PayerId = user.Id
+                };
+
+                OT.Add(pmm);
+            }
+        }
+
+        if (OWESTO.ToList().Count() > 0)
+        {
+            foreach (var item in OWESFROM)
+            {
+                var user = await userManager.FindByIdAsync(item.name);
+                PayerModel pmm = new PayerModel()
+                {
+                    Amount = item.amount,
+                    Payer = user,
+                    PayerId = user.Id
+                };
+
+                OF.Add(pmm);
+            }
+
+        }
+
+
+
+        userModel.Owesfrom=OF.ToList();
       userModel.Owsto=OT.ToList();
     return userModel;
      

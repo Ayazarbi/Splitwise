@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/home/kali/.dotnet/store/|arch|/|tfm|",
-      "/home/kali/.nuget/packages"
+      "C:\\Users\\Kali\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Kali\\.nuget\\packages"
     ]
   }
 }
